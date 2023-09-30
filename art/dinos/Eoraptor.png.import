@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4tkoan7p5o6b"
-path="res://.godot/imported/player_idle.png-f635ef304064737a0e78dfffd986b489.ctex"
+uid="uid://kco23i1wyot2"
+path="res://.godot/imported/Eoraptor.png-3878921d904d4a0891bc891d517ecb6c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/character/player_idle.png"
-dest_files=["res://.godot/imported/player_idle.png-f635ef304064737a0e78dfffd986b489.ctex"]
+source_file="res://art/dinos/Eoraptor.png"
+dest_files=["res://.godot/imported/Eoraptor.png-3878921d904d4a0891bc891d517ecb6c.ctex"]
 
 [params]
 
