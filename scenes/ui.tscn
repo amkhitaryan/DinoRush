@@ -8,7 +8,6 @@
 script = ExtResource("1_3selm")
 
 [node name="EndOfGameScreen" type="Node2D" parent="."]
-visible = false
 
 [node name="RestartButton" type="Button" parent="EndOfGameScreen"]
 self_modulate = Color(1, 1, 1, 0)
@@ -61,6 +60,17 @@ offset_top = -12.5
 offset_right = 18.5
 offset_bottom = 13.5
 text = "Quit"
+
+[node name="CreditsLabel" type="Label" parent="EndOfGameScreen"]
+offset_left = 525.0
+offset_top = 211.0
+offset_right = 724.0
+offset_bottom = 263.0
+scale = Vector2(1.2, 1.2)
+text = "Made by dsfan in 48 hours
+for Ludum Dare 54"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="DuringGameScreen" type="Node2D" parent="."]
 
