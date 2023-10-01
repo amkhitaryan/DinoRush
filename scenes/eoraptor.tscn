@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://cprkqskk7btyv"]
+[gd_scene load_steps=9 format=3 uid="uid://cprkqskk7btyv"]
 
-[ext_resource type="Script" path="res://Eoraptor.cs" id="1_gslvs"]
+[ext_resource type="Script" path="res://scripts/Eoraptor.cs" id="1_1gnw6"]
 [ext_resource type="Texture2D" uid="uid://kco23i1wyot2" path="res://art/dinos/Eoraptor.png" id="2_ogonk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sbt5x"]
@@ -39,12 +39,19 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_o6dah"]
+
 [node name="Eoraptor" type="CharacterBody2D"]
-script = ExtResource("1_gslvs")
+script = ExtResource("1_1gnw6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(11.5, 11.5)
+position = Vector2(1, -33)
 scale = Vector2(1.47917, 1.47917)
 sprite_frames = SubResource("SpriteFrames_w0ai8")
 animation = &"new_animation"
 frame_progress = 0.252904
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -16)
+scale = Vector2(1.47917, 1.47917)
+shape = SubResource("CircleShape2D_o6dah")
