@@ -27,7 +27,7 @@ public partial class Eoraptor : CharacterBody2D
 			return;
 		}
 
-		Animation.Play("side_walk");
+		Animation.Play("walk");
 	}
 	
 	public override void _PhysicsProcess(double delta)

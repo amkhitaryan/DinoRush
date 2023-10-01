@@ -35,7 +35,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_757us")
 }],
 "loop": true,
-"name": &"side_walk",
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -56,7 +56,7 @@ script = ExtResource("1_1gnw6")
 position = Vector2(1, -33)
 scale = Vector2(1.47917, 1.47917)
 sprite_frames = SubResource("SpriteFrames_w0ai8")
-animation = &"side_walk"
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -13)
