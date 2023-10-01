@@ -179,10 +179,9 @@ public partial class Player : CharacterBody2D
 		
 	}
 
-	private void OnEoraptorHitPlayer(float damage,  int posX, int posY)
+	public void OnEoraptorHitPlayer(float damage,  float posX, float posY)
 	{
 		Debug.WriteLine($"Player got hit for {damage}hp");
-		Debug.WriteLine($"({Position.X};{Position.Y}) from ({posX};{posY})");
 
 		_gotHitVector = new Vector2(Position.X < posX  ? -100 : 100, Position.Y < posY-20 ? -Speed * _gotHitForce : Speed * _gotHitForce);
 		Debug.WriteLine(_gotHitVector);

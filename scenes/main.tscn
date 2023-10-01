@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://kefpnlxqef0b"]
+[gd_scene load_steps=15 format=3 uid="uid://kefpnlxqef0b"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_c4fh7"]
 [ext_resource type="Texture2D" uid="uid://c1wrix7q5b0q1" path="res://art/tilemap/terrain.png" id="1_fo3xo"]
 [ext_resource type="PackedScene" uid="uid://cowqy1gy8evll" path="res://scenes/player.tscn" id="2_x6kcb"]
 [ext_resource type="PackedScene" uid="uid://cprkqskk7btyv" path="res://scenes/eoraptor.tscn" id="3_8hjlt"]
+[ext_resource type="Texture2D" uid="uid://kco23i1wyot2" path="res://art/dinos/Eoraptor.png" id="5_ts58d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fkqms"]
 texture = ExtResource("1_fo3xo")
@@ -20,6 +21,50 @@ texture = ExtResource("1_fo3xo")
 [sub_resource type="TileSet" id="TileSet_jjlug"]
 sources/1 = SubResource("TileSetAtlasSource_fkqms")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbt5x"]
+atlas = ExtResource("5_ts58d")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smbmr"]
+atlas = ExtResource("5_ts58d")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jt73i"]
+atlas = ExtResource("5_ts58d")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_757us"]
+atlas = ExtResource("5_ts58d")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w0ai8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbt5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smbmr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jt73i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_757us")
+}],
+"loop": true,
+"name": &"side_walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_um1mt"]
+radius = 5.40806
+height = 22.9843
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w8dwj"]
+radius = 11.0
+height = 52.0
+
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_c4fh7")
@@ -31,12 +76,7 @@ layer_0/tile_data = PackedInt32Array(0, 131073, 2, 1, 131073, 2, 2, 131073, 2, 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(365, 222)
-zoom = Vector2(1.6, 1.6)
-
-[node name="Eoraptor" parent="." instance=ExtResource("3_8hjlt")]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(366, 193)
+zoom = Vector2(1.4, 1.4)
 
 [node name="Player" parent="." instance=ExtResource("2_x6kcb")]
 z_index = 1
@@ -44,7 +84,35 @@ y_sort_enabled = true
 position = Vector2(302, 184)
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 2.0
+autostart = true
 
-[connection signal="HitPlayer" from="Eoraptor" to="Player" method="OnEoraptorHitPlayer"]
+[node name="Eoraptor" parent="." instance=ExtResource("3_8hjlt")]
+visible = false
+z_index = 1
+y_sort_enabled = true
+position = Vector2(472, 176)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Eoraptor"]
+position = Vector2(1, -33)
+scale = Vector2(1.47917, 1.47917)
+sprite_frames = SubResource("SpriteFrames_w0ai8")
+animation = &"side_walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Eoraptor"]
+position = Vector2(-1, -13)
+rotation = -1.58264
+scale = Vector2(1.47917, 1.47917)
+shape = SubResource("CapsuleShape2D_um1mt")
+
+[node name="EoraptorHitbox" type="Area2D" parent="Eoraptor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Eoraptor/EoraptorHitbox"]
+position = Vector2(-9, -19)
+rotation = 1.56955
+shape = SubResource("CapsuleShape2D_w8dwj")
+
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="OnEnemySpawnTimerTimeout"]
+[connection signal="HitPlayer" from="Eoraptor" to="Player" method="OnEoraptorHitPlayer"]
+[connection signal="body_entered" from="Eoraptor/EoraptorHitbox" to="Eoraptor" method="OnEoraptorHitboxBodyEntered" flags=18]
+[connection signal="body_exited" from="Eoraptor/EoraptorHitbox" to="Eoraptor" method="OnEoraptorHitboxBodyExited" flags=18]

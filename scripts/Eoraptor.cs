@@ -1,16 +1,21 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 public partial class Eoraptor : CharacterBody2D
 {
 	private const float _speed = 60.0f;
 	private const float _health = 100.0f;
-	private const float _damage = 10.0f; 
+	private const float _damage = 10.0f;
+
+	public int IndexOnMap = 0;
 	
 	[Signal]
 	public delegate void HitPlayerEventHandler(float damage, int posX, int posY);
 
 	private AnimatedSprite2D Animation => GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+	// private CharacterBody2D Player => GetNode<CharacterBody2D>("/root/Main/Player");
+
 	
 	public override void _Ready()
 	{
@@ -20,8 +25,6 @@ public partial class Eoraptor : CharacterBody2D
 		}
 
 		Animation.Play("side_walk");
-
-		Position = new Vector2(530, 140);
 	}
 	
 	public override void _PhysicsProcess(double delta)
@@ -32,14 +35,18 @@ public partial class Eoraptor : CharacterBody2D
 		}
 
 		var position = Position;
-		if (position.X <= -43)
+		if (position.X <= 300)
 		{
-			position = new Vector2(530, 140);
-			// Free();
-			// return;
+			Globals.DinoSpawnMap[IndexOnMap] = false;
 		}
 		
-		var newPosition = new Vector2((float)(position.X - (delta * _speed)), position.Y);
+		if (position.X <= -43)
+		{
+			Free();
+			return;
+		}
+		
+		var newPosition = new Vector2((float)(position.X - delta * _speed), position.Y);
 
 		Position = newPosition;
 	}
@@ -48,6 +55,7 @@ public partial class Eoraptor : CharacterBody2D
 	{
 		if (body.HasMethod("player"))
 		{
+			Debug.WriteLine("Sending HitPlayer signal from Eoraptor");
 			EmitSignal(SignalName.HitPlayer, _damage, Position.X, Position.Y);
 		}
 	}
