@@ -23,7 +23,7 @@ public partial class Main : Node2D
 
 	private void OnEnemySpawnTimerTimeout()
 	{
-		if (!Globals.IsGameStarted || Globals.DinoSpawnMap.All(x => x.Value))
+		if (!Globals.IsGameStarted || Globals.DinoSpawnMap.All(x => x.Value) || Globals.IsGameOver)
 		{
 			return;
 		}
@@ -47,7 +47,7 @@ public partial class Main : Node2D
 
 	private void OnEnemySpawnVerticalTimerTimeout()
 	{
-		if (!Globals.IsGameStarted || Globals.DinoSpawnVerticalMap.All(x => x.Value))
+		if (!Globals.IsGameStarted || Globals.DinoSpawnVerticalMap.All(x => x.Value) || Globals.IsGameOver)
 		{
 			return;
 		}

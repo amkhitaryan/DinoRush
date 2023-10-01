@@ -22,7 +22,7 @@ public partial class Eoraptor : CharacterBody2D
 	
 	public override void _Ready()
 	{
-		if (!Globals.IsGameStarted)
+		if (!Globals.IsGameStarted || Globals.IsGameOver)
 		{
 			return;
 		}

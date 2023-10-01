@@ -30,13 +30,13 @@ public partial class Player : CharacterBody2D
 	
 	public override void _PhysicsProcess(double delta)
 	{
-		if (!Globals.IsGameStarted)
+		if (!Globals.IsGameStarted || Globals.IsGameOver)
 		{
 			return;
 		}
+		
 		UpdateHealth();
 		GotHit();
-		
 		PlayerMovement();
 
 	}
