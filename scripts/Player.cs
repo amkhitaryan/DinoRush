@@ -181,10 +181,7 @@ public partial class Player : CharacterBody2D
 
 	public void OnEoraptorHitPlayer(float damage,  float posX, float posY)
 	{
-		Debug.WriteLine($"Player got hit for {damage}hp");
-
 		_gotHitVector = new Vector2(Position.X < posX  ? -100 : 100, Position.Y < posY-20 ? -Speed * GotHitForce : Speed * GotHitForce);
-		Debug.WriteLine(_gotHitVector);
 		_gotHit = true;
 		_health -= damage;
 		GotHitTimer.Start();
