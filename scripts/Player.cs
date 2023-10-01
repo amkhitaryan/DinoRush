@@ -6,7 +6,7 @@ public partial class Player : CharacterBody2D
 {
 	private const float GotHitForce = 1.15f;
 	private const float Speed = 110.0f;
-	private float _health = 100.0f;
+	private float _health = 110.0f;
 	private string _currentDirection = "none";
 	private bool _gotHit = false;
 	private bool _canMove = true;
