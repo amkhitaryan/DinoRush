@@ -4,9 +4,10 @@ using System.Diagnostics;
 
 public partial class Eoraptor : CharacterBody2D
 {
-	private const float _speed = 60.0f;
-	private const float _health = 100.0f;
-	private const float _damage = 10.0f;
+	private const float Speed = 60.0f;
+	private const float Health = 100.0f;
+	private const float Damage = 10.0f;
+	private const int ScorePoints = 10;
 
 	public int IndexOnMap = 0;
 	
@@ -42,11 +43,12 @@ public partial class Eoraptor : CharacterBody2D
 		
 		if (position.X <= -43)
 		{
+			Globals.Score += ScorePoints;
 			Free();
 			return;
 		}
 		
-		var newPosition = new Vector2((float)(position.X - delta * _speed), position.Y);
+		var newPosition = new Vector2((float)(position.X - delta * Speed), position.Y);
 
 		Position = newPosition;
 	}
@@ -56,7 +58,7 @@ public partial class Eoraptor : CharacterBody2D
 		if (body.HasMethod("player"))
 		{
 			Debug.WriteLine("Sending HitPlayer signal from Eoraptor");
-			EmitSignal(SignalName.HitPlayer, _damage, Position.X, Position.Y);
+			EmitSignal(SignalName.HitPlayer, Damage, Position.X, Position.Y);
 		}
 	}
 	

@@ -7,6 +7,8 @@ public partial class Globals : Node
 	public static bool IsGameStarted = true; // false
 	public static bool IsGameOver = false;
 
+	public static int Score { get; set; }
+
 	public static volatile Dictionary<int, bool> DinoSpawnMap = new()
 	{
 		{ 0, false },
