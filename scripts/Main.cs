@@ -9,6 +9,7 @@ public partial class Main : Node2D
 	// private CharacterBody2D Enemy => GetNode<CharacterBody2D>("/root/Main/Enemy");
 	
 	private PackedScene _eoraptorScene = GD.Load<PackedScene>("res://scenes/eoraptor.tscn");
+	private PackedScene _eoraptorVScene = GD.Load<PackedScene>("res://scenes/eoraptor_v.tscn");
 	private Random _random;
 	
 	public override void _Ready()
@@ -22,7 +23,7 @@ public partial class Main : Node2D
 
 	private void OnEnemySpawnTimerTimeout()
 	{
-		if (Globals.DinoSpawnMap.All(x => x.Value))
+		if (!Globals.IsGameStarted || Globals.DinoSpawnMap.All(x => x.Value))
 		{
 			return;
 		}
@@ -37,9 +38,34 @@ public partial class Main : Node2D
 		var dino = (Node2D)_eoraptorScene.Instantiate();
 
 		var dinoClass = dino as Eoraptor;
-		dinoClass.HitPlayer += (damage, x, y) => Player.OnEoraptorHitPlayer(damage, x, y); // connect signal
+		dinoClass.HitPlayer += (damage, x, y) => Player.OnEoraptorHitPlayer(damage, x, y);
 		dinoClass.IndexOnMap = rnd;
-		dinoClass.Position = new Vector2(750, (float)(40 * Math.Pow(rnd, 1) + 40));
+		dinoClass.IsHorizontal = true;
+		dinoClass.Position = new Vector2(750.0f, 40.0f * Math.Max(rnd, 1));
+		AddChild(dino);
+	}
+
+	private void OnEnemySpawnVerticalTimerTimeout()
+	{
+		if (!Globals.IsGameStarted || Globals.DinoSpawnVerticalMap.All(x => x.Value))
+		{
+			return;
+		}
+		
+		int rnd;
+		do
+		{
+			rnd = _random.Next(0, 17);
+		} while (Globals.DinoSpawnVerticalMap[rnd]);
+		
+		Globals.DinoSpawnVerticalMap[rnd] = true;
+		var dino = (Node2D)_eoraptorVScene.Instantiate();
+
+		var dinoClass = dino as Eoraptor;
+		dinoClass.HitPlayer += (damage, x, y) => Player.OnEoraptorHitPlayer(damage, x, y);
+		dinoClass.IndexOnMap = rnd;
+		dinoClass.IsHorizontal = false;
+		dinoClass.Position = new Vector2(40.0f * Math.Max(rnd, 1), -20.0f);
 		AddChild(dino);
 	}
 }

@@ -4,12 +4,14 @@ using System.Diagnostics;
 
 public partial class Eoraptor : CharacterBody2D
 {
-	private const float Speed = 60.0f;
+	private const float Speed = 100.0f;
 	private const float Health = 100.0f;
 	private const float Damage = 10.0f;
 	private const int ScorePoints = 10;
 
+	private bool _freedMapIndex = false;
 	public int IndexOnMap = 0;
+	public bool IsHorizontal = true;
 	
 	[Signal]
 	public delegate void HitPlayerEventHandler(float damage, int posX, int posY);
@@ -36,19 +38,27 @@ public partial class Eoraptor : CharacterBody2D
 		}
 
 		var position = Position;
-		if (position.X <= 300)
+		if (IsHorizontal && position.X <= 300 && !_freedMapIndex)
 		{
 			Globals.DinoSpawnMap[IndexOnMap] = false;
+			_freedMapIndex = true;
+		}
+		else if (!IsHorizontal && position.Y >= 300 && !_freedMapIndex)
+		{
+			Globals.DinoSpawnVerticalMap[IndexOnMap] = false;
+			_freedMapIndex = true;
 		}
 		
-		if (position.X <= -43)
+		if ((position.X <= -43 && IsHorizontal) || (position.Y >= 475 && !IsHorizontal))
 		{
 			Globals.Score += ScorePoints;
 			Free();
 			return;
 		}
-		
-		var newPosition = new Vector2((float)(position.X - delta * Speed), position.Y);
+
+		var newPosition = IsHorizontal
+			? new Vector2((float)(position.X - delta * Speed), position.Y)
+			: new Vector2(position.X, (float)(position.Y + delta * Speed));
 
 		Position = newPosition;
 	}
@@ -57,7 +67,6 @@ public partial class Eoraptor : CharacterBody2D
 	{
 		if (body.HasMethod("player"))
 		{
-			Debug.WriteLine("Sending HitPlayer signal from Eoraptor");
 			EmitSignal(SignalName.HitPlayer, Damage, Position.X, Position.Y);
 		}
 	}
