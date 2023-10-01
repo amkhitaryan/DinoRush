@@ -32,8 +32,9 @@ public partial class Eoraptor : CharacterBody2D
 	
 	public override void _PhysicsProcess(double delta)
 	{
-		if (!Globals.IsGameStarted)
+		if (!Globals.IsGameStarted || Globals.IsGameOver)
 		{
+			Animation.Stop();
 			return;
 		}
 

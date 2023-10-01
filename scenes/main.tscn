@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://kefpnlxqef0b"]
+[gd_scene load_steps=9 format=3 uid="uid://kefpnlxqef0b"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_c4fh7"]
 [ext_resource type="Texture2D" uid="uid://c1wrix7q5b0q1" path="res://art/tilemap/terrain.png" id="1_fo3xo"]
 [ext_resource type="PackedScene" uid="uid://cowqy1gy8evll" path="res://scenes/player.tscn" id="2_x6kcb"]
 [ext_resource type="PackedScene" uid="uid://cprkqskk7btyv" path="res://scenes/eoraptor.tscn" id="3_8hjlt"]
 [ext_resource type="PackedScene" uid="uid://c54kbjxovi7ax" path="res://scenes/eoraptor_v.tscn" id="5_tbd8j"]
+[ext_resource type="PackedScene" uid="uid://d3fwi1hjkgha1" path="res://scenes/ui.tscn" id="6_tn6m1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fkqms"]
 texture = ExtResource("1_fo3xo")
@@ -50,6 +51,11 @@ autostart = true
 
 [node name="EnemySpawnVerticalTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="UI" parent="." instance=ExtResource("6_tn6m1")]
+visible = false
+
+[node name="MapBorder" type="StaticBody2D" parent="."]
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="OnEnemySpawnTimerTimeout"]
 [connection signal="timeout" from="EnemySpawnVerticalTimer" to="." method="OnEnemySpawnVerticalTimerTimeout"]

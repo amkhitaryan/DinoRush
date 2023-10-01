@@ -189,8 +189,14 @@ public partial class Player : CharacterBody2D
 		_gotHit = true;
 		_health -= damage;
 		GotHitTimer.Start();
-		
 		GotHitAudio.Play();
+
+		if (_health <= 0)
+		{
+			_health = 0;
+			Globals.IsGameOver = true;
+			Animation.Stop();
+		}
 	}
 	
 }

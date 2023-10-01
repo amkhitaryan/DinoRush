@@ -4,8 +4,9 @@ using Godot.Collections;
 
 public partial class Globals : Node
 {
-	public static bool IsGameStarted = true; // false
+	public static bool IsGameStarted = false; // false
 	public static bool IsGameOver = false;
+	public static int Difficulty = 1;
 
 	public static int Score { get; set; }
 
