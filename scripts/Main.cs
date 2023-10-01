@@ -19,6 +19,11 @@ public partial class Main : Node2D
 
 	public override void _Process(double delta)
 	{
+		if (Globals.IsGameOver)
+		{
+			var node = GetNode("UI") as UI;
+			node.OnGameOver();
+		}
 	}
 
 	private void OnEnemySpawnTimerTimeout()

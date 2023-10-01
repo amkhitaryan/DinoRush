@@ -34,15 +34,16 @@ public partial class UI : CanvasLayer
 	{
 		if (Globals.IsGameOver)
 		{
-			DuringGameScreen.Visible = false;
 			EndOfGameScreen.Visible = true;
-			Debug.WriteLine($"Score: {Globals.Score}");
 		}
 	}
 
 	private void OnRestartButtonPressed()
 	{
 		GetTree().ReloadCurrentScene();
+		Globals.IsGameStarted = false;
+		Globals.IsGameOver = false;
+		Globals.Score = 0;
 		// reset positions, enemies, hps, score
 	}
 	
