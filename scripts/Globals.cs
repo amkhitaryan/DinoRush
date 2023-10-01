@@ -4,7 +4,7 @@ using Godot.Collections;
 
 public partial class Globals : Node
 {
-	public static bool IsGameStarted = false; // false
+	public static bool IsGameStarted = false;
 	public static bool IsGameOver = false;
 	public static float Difficulty = 1.0f;
 

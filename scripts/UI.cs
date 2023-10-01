@@ -8,11 +8,12 @@ public partial class UI : CanvasLayer
 	[Signal]
 	public delegate void GameStartedEventHandler();
 	
+	[Signal]
+	public delegate void GameRestartedEventHandler();
+	
 	private Node2D BeforeGameScreen => GetNode<Node2D>("BeforeGameScreen");
 	private Node2D DuringGameScreen => GetNode<Node2D>("DuringGameScreen");
 	private Node2D EndOfGameScreen => GetNode<Node2D>("EndOfGameScreen");
-
-	// private Label PointsLabel => GetNode<Label>("EndOfGameScreen/EndGameScoreDisplay/Sprite2D/PointsLabel");
 	private Label ScoreLabel => GetNode<Label>("DuringGameScreen/ScoreLabel");
 	
 	public override void _Ready()
@@ -28,7 +29,6 @@ public partial class UI : CanvasLayer
 	private void UpdatePoints()
 	{
 		ScoreLabel.Text = Globals.Score.ToString();  
-		// Score = points;
 	}
 	
 	public void OnGameOver()
@@ -54,12 +54,12 @@ public partial class UI : CanvasLayer
 		{
 			Globals.DinoSpawnMap[key] = false;
 		}
-		// reset positions, enemies, hps, score
 	}
 	
 	private void OnPlayButtonPressed()
 	{
 		EmitSignal(SignalName.GameStarted);
+		EmitSignal(SignalName.GameRestarted);
 		Globals.IsGameStarted = true;
 		BeforeGameScreen.Visible = false;
 		DuringGameScreen.Visible = true;

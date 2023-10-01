@@ -12,9 +12,10 @@ public partial class Main : Node2D
 	private Timer Lvl5DifficultyTimer => GetNode<Timer>("Lvl5DifficultyTimer");
 	private Timer Lvl6DifficultyTimer => GetNode<Timer>("Lvl6DifficultyTimer");
 	private Timer EnemySpawnTimer => GetNode<Timer>("EnemySpawnTimer");
-	private Timer EnemySpawnTimerVertical => GetNode<Timer>("EnemySpawnVerticalTimer");
 	private AudioStreamPlayer2D Lvl2Audio => GetNode<AudioStreamPlayer2D>("LvlDifficultyChangeAudio");
 	private AudioStreamPlayer2D Lvl6Audio => GetNode<AudioStreamPlayer2D>("Lvl6DifficultyChangeAudio");
+	private AudioStreamPlayer2D SoundtrackAudio => GetNode<AudioStreamPlayer2D>("Soundtrack");
+	private AudioStreamPlayer2D Soundtrack2Audio => GetNode<AudioStreamPlayer2D>("Soundtrack2");
 	private PackedScene _eoraptorScene = GD.Load<PackedScene>("res://scenes/eoraptor.tscn");
 	private PackedScene _eoraptorVScene = GD.Load<PackedScene>("res://scenes/eoraptor_v.tscn");
 	private Random _random;
@@ -30,6 +31,7 @@ public partial class Main : Node2D
 		{
 			var node = GetNode("UI") as UI;
 			node.OnGameOver();
+			Soundtrack2Audio.Stop();
 		}
 	}
 
@@ -118,10 +120,21 @@ public partial class Main : Node2D
 
 	private void OnUIGameStarted()
 	{
+		SoundtrackAudio.Stop();
+		Soundtrack2Audio.Play();
 		Lvl2DifficultyTimer.Start();
 		Lvl3DifficultyTimer.Start();
 		Lvl4DifficultyTimer.Start();
 		Lvl5DifficultyTimer.Start();
 		Lvl6DifficultyTimer.Start();
+	}
+
+	private void OnUIGameRestarted()
+	{
+		Lvl2DifficultyTimer.Stop();
+		Lvl3DifficultyTimer.Stop();
+		Lvl4DifficultyTimer.Stop();
+		Lvl5DifficultyTimer.Stop();
+		Lvl6DifficultyTimer.Stop();
 	}
 }

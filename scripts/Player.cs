@@ -159,7 +159,6 @@ public partial class Player : CharacterBody2D
 	private void UpdateHealth()
 	{
 		HealthBar.Value = _health;
-		// HealthBar.Visible = _health < 100;
 	}
 
 	private void OnPlayerHitboxBodyEntered(Node2D body)
