@@ -1,6 +1,6 @@
 [gd_scene load_steps=35 format=3 uid="uid://cowqy1gy8evll"]
 
-[ext_resource type="Script" path="res://scenes/Player.cs" id="1_4eegg"]
+[ext_resource type="Script" path="res://scripts/Player.cs" id="1_6s2on"]
 [ext_resource type="Texture2D" uid="uid://b4tkoan7p5o6b" path="res://art/character/player.png" id="2_6dm7a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vbqem"]
@@ -250,7 +250,7 @@ animations = [{
 radius = 1.0
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_4eegg")
+script = ExtResource("1_6s2on")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ulw8y")

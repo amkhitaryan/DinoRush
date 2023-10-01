@@ -1,9 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://kefpnlxqef0b"]
 
-[ext_resource type="Texture2D" uid="uid://c1wrix7q5b0q1" path="res://art/tilemap/terrain.png" id="1_rsjyd"]
+[ext_resource type="Texture2D" uid="uid://c1wrix7q5b0q1" path="res://art/tilemap/terrain.png" id="1_fo3xo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fkqms"]
-texture = ExtResource("1_rsjyd")
+texture = ExtResource("1_fo3xo")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -17,7 +17,7 @@ texture = ExtResource("1_rsjyd")
 [sub_resource type="TileSet" id="TileSet_jjlug"]
 sources/1 = SubResource("TileSetAtlasSource_fkqms")
 
-[node name="World" type="Node2D"]
+[node name="Main" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_jjlug")
