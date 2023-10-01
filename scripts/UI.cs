@@ -42,6 +42,7 @@ public partial class UI : CanvasLayer
 	private void OnRestartButtonPressed()
 	{
 		GetTree().ReloadCurrentScene();
+		EmitSignal(SignalName.GameRestarted);
 		Globals.IsGameStarted = false;
 		Globals.IsGameOver = false;
 		Globals.Score = 0;
@@ -59,7 +60,6 @@ public partial class UI : CanvasLayer
 	private void OnPlayButtonPressed()
 	{
 		EmitSignal(SignalName.GameStarted);
-		EmitSignal(SignalName.GameRestarted);
 		Globals.IsGameStarted = true;
 		BeforeGameScreen.Visible = false;
 		DuringGameScreen.Visible = true;
