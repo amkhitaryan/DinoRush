@@ -43,6 +43,7 @@ public partial class Globals : Node
 		{ 14, false },
 		{ 15, false },
 		{ 16, false },
+		{ 17, false },
 	};
 	
 	// Called when the node enters the scene tree for the first time.

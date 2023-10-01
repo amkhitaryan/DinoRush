@@ -36,7 +36,7 @@ public partial class Main : Node2D
 		int rnd;
 		do
 		{
-			rnd = _random.Next(0, 10);
+			rnd = _random.Next(0, Globals.DinoSpawnMap.Count);
 		} while (Globals.DinoSpawnMap[rnd]);
 		
 		Globals.DinoSpawnMap[rnd] = true;
@@ -60,7 +60,7 @@ public partial class Main : Node2D
 		int rnd;
 		do
 		{
-			rnd = _random.Next(0, 17);
+			rnd = _random.Next(0, Globals.DinoSpawnVerticalMap.Count);
 		} while (Globals.DinoSpawnVerticalMap[rnd]);
 		
 		Globals.DinoSpawnVerticalMap[rnd] = true;
