@@ -53,9 +53,12 @@ autostart = true
 autostart = true
 
 [node name="UI" parent="." instance=ExtResource("6_tn6m1")]
-visible = false
 
 [node name="MapBorder" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapBorder"]
+position = Vector2(8, 0)
+polygon = PackedVector2Array(-6, 0, 17, 0, 728, 0, 728, 448, -8, 448, -8, -1, -6, -1, -6, -3, -11, -2, -11, 5, -15, 465, 741, 455, 737, -16, -4, -3, -5, -1, -7, 0)
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="OnEnemySpawnTimerTimeout"]
 [connection signal="timeout" from="EnemySpawnVerticalTimer" to="." method="OnEnemySpawnVerticalTimerTimeout"]

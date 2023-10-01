@@ -41,7 +41,7 @@ public partial class Main : Node2D
 		dinoClass.HitPlayer += (damage, x, y) => Player.OnEoraptorHitPlayer(damage, x, y);
 		dinoClass.IndexOnMap = rnd;
 		dinoClass.IsHorizontal = true;
-		dinoClass.Position = new Vector2(750.0f, 40.0f * Math.Max(rnd, 1));
+		dinoClass.Position = new Vector2(785.0f, 40.0f * Math.Max(rnd, 1));
 		AddChild(dino);
 	}
 
