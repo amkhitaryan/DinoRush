@@ -16,6 +16,7 @@ public partial class Player : CharacterBody2D
 	private Camera2D MainCamera => GetNode<Camera2D>("MainCamera");
 	private ProgressBar HealthBar => GetNode<ProgressBar>("HealthBar");
 	private Timer GotHitTimer => GetNode<Timer>("GotHitTimer");
+	private AudioStreamPlayer2D GotHitAudio => GetNode<AudioStreamPlayer2D>("GotHitAudio");
 
 	public override void _Ready()
 	{
@@ -189,7 +190,7 @@ public partial class Player : CharacterBody2D
 		_health -= damage;
 		GotHitTimer.Start();
 		
-		// play sound
+		GotHitAudio.Play();
 	}
 	
 }

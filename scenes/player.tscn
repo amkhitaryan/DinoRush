@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://cowqy1gy8evll"]
+[gd_scene load_steps=37 format=3 uid="uid://cowqy1gy8evll"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_6s2on"]
 [ext_resource type="Texture2D" uid="uid://b4tkoan7p5o6b" path="res://art/character/player.png" id="2_6dm7a"]
+[ext_resource type="AudioStream" uid="uid://cpvs0iulb1t3n" path="res://audio/GotHit.wav" id="3_vvfax"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vbqem"]
 atlas = ExtResource("2_6dm7a")
@@ -284,6 +285,9 @@ shape = SubResource("CircleShape2D_o7i86")
 
 [node name="GotHitTimer" type="Timer" parent="."]
 wait_time = 0.25
+
+[node name="GotHitAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_vvfax")
 
 [connection signal="body_entered" from="PlayerHitbox" to="." method="OnPlayerHitboxBodyEntered"]
 [connection signal="body_exited" from="PlayerHitbox" to="." method="OnPlayerHitboxBodyExited"]
