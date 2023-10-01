@@ -1,16 +1,19 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 public partial class Player : CharacterBody2D
 {
 	public const float Speed = 100.0f;
-	public const float _health = 100.0f;
+	public float _health = 100.0f;
 	private string _currentDirection = "none";
+	private bool _gotHit = false;
+	private bool _canMove = true;
 	
 	private AnimatedSprite2D Animation => GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 	private Camera2D MainCamera => GetNode<Camera2D>("MainCamera");
 	private ProgressBar HealthBar => GetNode<ProgressBar>("HealthBar");
-
+	private Timer GotHitTimer => GetNode<Timer>("GotHitTimer");
 
 	public override void _Ready()
 	{
@@ -28,13 +31,36 @@ public partial class Player : CharacterBody2D
 		{
 			return;
 		}
+		UpdateHealth();
+		GotHit();
 		
 		PlayerMovement();
-		
+
 	}
-	
+
+	private void GotHit()
+	{
+		if (_gotHit)
+		{
+			_canMove = false;
+			Velocity = Velocity with { X = 0, Y = Speed * 1.15f };
+			MoveAndSlide();
+		}
+	}
+
+	private void OnGotHitTimerTimeout()
+	{
+		_canMove = true;
+		_gotHit = false;
+	}
+
 	private void PlayerMovement()
 	{
+		if (!_canMove)
+		{
+			return;
+		}
+		
 		if (Input.IsActionPressed("ui_right"))
 		{
 			_currentDirection = "right";
@@ -132,4 +158,39 @@ public partial class Player : CharacterBody2D
 		HealthBar.Value = _health;
 		// HealthBar.Visible = _health < 100;
 	}
+
+	private void OnPlayerHitboxBodyEntered(Node2D body)
+	{
+		if (body.HasMethod("Enemy"))
+		{
+			
+		}
+	}
+	
+	private void OnPlayerHitboxBodyExited(Node2D body)
+	{
+		
+	}
+
+	private void player()
+	{
+		
+	}
+
+	private void OnEoraptorHitPlayer(float damage,  int posX, int posY)
+	{
+		Debug.WriteLine($"Player got hit for {damage}hp");
+		Debug.WriteLine($"Attacked from [{posX};{posY}]");
+
+		_health -= damage;
+		_gotHit = true;
+		GotHitTimer.Start();
+
+		// play sound
+		// move player
+		// Velocity = Velocity with { X = 0, Y = Speed * 16 };
+		// MoveAndSlide();
+
+	}
+	
 }

@@ -3,8 +3,12 @@ using System;
 
 public partial class Eoraptor : CharacterBody2D
 {
-	public const float _speed = 60.0f;
-	public const float _health = 100.0f;
+	private const float _speed = 60.0f;
+	private const float _health = 100.0f;
+	private const float _damage = 10.0f; 
+	
+	[Signal]
+	public delegate void HitPlayerEventHandler(float damage, int posX, int posY);
 
 	private AnimatedSprite2D Animation => GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 	
@@ -38,5 +42,21 @@ public partial class Eoraptor : CharacterBody2D
 		var newPosition = new Vector2((float)(position.X - (delta * _speed)), position.Y);
 
 		Position = newPosition;
+	}
+	
+	private void OnEoraptorHitboxBodyEntered(Node2D body)
+	{
+		if (body.HasMethod("player"))
+		{
+			EmitSignal(SignalName.HitPlayer, _damage, Position.X, Position.Y);
+		}
+	}
+	
+	private void OnEoraptorHitboxBodyExited(Node2D body)
+	{
+		if (body.HasMethod("player"))
+		{
+			
+		}
 	}
 }

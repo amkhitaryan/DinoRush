@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cowqy1gy8evll"]
+[gd_scene load_steps=36 format=3 uid="uid://cowqy1gy8evll"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_6s2on"]
 [ext_resource type="Texture2D" uid="uid://b4tkoan7p5o6b" path="res://art/character/player.png" id="2_6dm7a"]
@@ -249,6 +249,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_jfhlm"]
 radius = 4.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_o7i86"]
+radius = 13.0384
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, -14)
 script = ExtResource("1_6s2on")
@@ -273,3 +276,15 @@ offset_bottom = 45.0
 scale = Vector2(0.1, 0.1)
 value = 100.0
 show_percentage = false
+
+[node name="PlayerHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox"]
+shape = SubResource("CircleShape2D_o7i86")
+
+[node name="GotHitTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[connection signal="body_entered" from="PlayerHitbox" to="." method="OnPlayerHitboxBodyEntered"]
+[connection signal="body_exited" from="PlayerHitbox" to="." method="OnPlayerHitboxBodyExited"]
+[connection signal="timeout" from="GotHitTimer" to="." method="OnGotHitTimerTimeout"]
