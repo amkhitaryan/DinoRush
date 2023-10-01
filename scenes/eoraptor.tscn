@@ -39,7 +39,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_o6dah"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_um1mt"]
+radius = 5.40806
+height = 22.9843
 
 [node name="Eoraptor" type="CharacterBody2D"]
 script = ExtResource("1_1gnw6")
@@ -51,6 +53,7 @@ sprite_frames = SubResource("SpriteFrames_w0ai8")
 animation = &"side_walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, -16)
+position = Vector2(-1, -13)
+rotation = -1.58264
 scale = Vector2(1.47917, 1.47917)
-shape = SubResource("CircleShape2D_o6dah")
+shape = SubResource("CapsuleShape2D_um1mt")

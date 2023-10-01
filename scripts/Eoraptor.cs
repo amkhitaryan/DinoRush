@@ -30,8 +30,9 @@ public partial class Eoraptor : CharacterBody2D
 		var position = Position;
 		if (position.X <= -43)
 		{
-			Free();
-			return;
+			position = new Vector2(530, 140);
+			// Free();
+			// return;
 		}
 		
 		var newPosition = new Vector2((float)(position.X - (delta * _speed)), position.Y);
