@@ -48,6 +48,8 @@ radius = 11.0
 height = 52.0
 
 [node name="Eoraptor" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
 script = ExtResource("1_1gnw6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
