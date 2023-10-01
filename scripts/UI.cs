@@ -1,11 +1,12 @@
 using Godot;
 using System;
 using System.Diagnostics;
+using System.Linq;
 
 public partial class UI : CanvasLayer
 {
-	// [Signal]
-	// public delegate void GameStartedEventHandler();
+	[Signal]
+	public delegate void GameStartedEventHandler();
 	
 	private Node2D BeforeGameScreen => GetNode<Node2D>("BeforeGameScreen");
 	private Node2D DuringGameScreen => GetNode<Node2D>("DuringGameScreen");
@@ -44,12 +45,21 @@ public partial class UI : CanvasLayer
 		Globals.IsGameStarted = false;
 		Globals.IsGameOver = false;
 		Globals.Score = 0;
+		Globals.Difficulty = 1;
+		foreach (var key in Globals.DinoSpawnVerticalMap.Keys.ToList())
+		{
+			Globals.DinoSpawnVerticalMap[key] = false;
+		}
+		foreach (var key in Globals.DinoSpawnMap.Keys.ToList())
+		{
+			Globals.DinoSpawnMap[key] = false;
+		}
 		// reset positions, enemies, hps, score
 	}
 	
 	private void OnPlayButtonPressed()
 	{
-		// EmitSignal(SignalName.GameStarted);
+		EmitSignal(SignalName.GameStarted);
 		Globals.IsGameStarted = true;
 		BeforeGameScreen.Visible = false;
 		DuringGameScreen.Visible = true;

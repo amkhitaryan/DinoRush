@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://kefpnlxqef0b"]
+[gd_scene load_steps=10 format=3 uid="uid://kefpnlxqef0b"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_c4fh7"]
 [ext_resource type="Texture2D" uid="uid://c1wrix7q5b0q1" path="res://art/tilemap/terrain.png" id="1_fo3xo"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cprkqskk7btyv" path="res://scenes/eoraptor.tscn" id="3_8hjlt"]
 [ext_resource type="PackedScene" uid="uid://c54kbjxovi7ax" path="res://scenes/eoraptor_v.tscn" id="5_tbd8j"]
 [ext_resource type="PackedScene" uid="uid://d3fwi1hjkgha1" path="res://scenes/ui.tscn" id="6_tn6m1"]
+[ext_resource type="AudioStream" uid="uid://lx4ctsyjxrsv" path="res://audio/pwup2.wav" id="7_o55dl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fkqms"]
 texture = ExtResource("1_fo3xo")
@@ -49,9 +50,11 @@ position = Vector2(564, 192)
 visible = false
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 1.2
 autostart = true
 
 [node name="EnemySpawnVerticalTimer" type="Timer" parent="."]
+wait_time = 1.15
 autostart = true
 
 [node name="UI" parent="." instance=ExtResource("6_tn6m1")]
@@ -62,5 +65,40 @@ autostart = true
 position = Vector2(8, 0)
 polygon = PackedVector2Array(-6, 0, 17, 0, 788, 0, 788, 448, -8, 448, -8, -1, -6, -1, -6, -3, -11, -2, -11, 5, -15, 465, 792, 451, 792, -9, -4, -3, -5, -1, -7, 0)
 
+[node name="Lvl2DifficultyTimer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
+[node name="Lvl3DifficultyTimer" type="Timer" parent="."]
+wait_time = 40.0
+one_shot = true
+
+[node name="Lvl4DifficultyTimer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[node name="Lvl5DifficultyTimer" type="Timer" parent="."]
+wait_time = 80.0
+one_shot = true
+
+[node name="Lvl6DifficultyTimer" type="Timer" parent="."]
+wait_time = 100.0
+one_shot = true
+
+[node name="LvlDifficultyChangeAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_o55dl")
+volume_db = -3.748
+
+[node name="Lvl6DifficultyChangeAudio" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -2)
+stream = ExtResource("7_o55dl")
+volume_db = -3.748
+
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="OnEnemySpawnTimerTimeout"]
 [connection signal="timeout" from="EnemySpawnVerticalTimer" to="." method="OnEnemySpawnVerticalTimerTimeout"]
+[connection signal="GameStarted" from="UI" to="." method="OnUIGameStarted"]
+[connection signal="timeout" from="Lvl2DifficultyTimer" to="." method="OnLvl2DifficultyTimerTimeout"]
+[connection signal="timeout" from="Lvl3DifficultyTimer" to="." method="OnLvl3DifficultyTimerTimeout"]
+[connection signal="timeout" from="Lvl4DifficultyTimer" to="." method="OnLvl4DifficultyTimerTimeout"]
+[connection signal="timeout" from="Lvl5DifficultyTimer" to="." method="OnLvl5DifficultyTimerTimeout"]
+[connection signal="timeout" from="Lvl6DifficultyTimer" to="." method="OnLvl6DifficultyTimerTimeout"]

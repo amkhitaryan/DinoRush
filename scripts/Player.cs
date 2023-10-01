@@ -4,9 +4,9 @@ using System.Diagnostics;
 
 public partial class Player : CharacterBody2D
 {
-	private const float _gotHitForce = 1.15f;
-	public const float Speed = 100.0f;
-	public float _health = 100.0f;
+	private const float GotHitForce = 1.15f;
+	private const float Speed = 110.0f;
+	private float _health = 100.0f;
 	private string _currentDirection = "none";
 	private bool _gotHit = false;
 	private bool _canMove = true;
@@ -184,7 +184,7 @@ public partial class Player : CharacterBody2D
 	{
 		Debug.WriteLine($"Player got hit for {damage}hp");
 
-		_gotHitVector = new Vector2(Position.X < posX  ? -100 : 100, Position.Y < posY-20 ? -Speed * _gotHitForce : Speed * _gotHitForce);
+		_gotHitVector = new Vector2(Position.X < posX  ? -100 : 100, Position.Y < posY-20 ? -Speed * GotHitForce : Speed * GotHitForce);
 		Debug.WriteLine(_gotHitVector);
 		_gotHit = true;
 		_health -= damage;

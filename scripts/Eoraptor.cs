@@ -52,14 +52,14 @@ public partial class Eoraptor : CharacterBody2D
 		
 		if ((position.X <= -43 && IsHorizontal) || (position.Y >= 475 && !IsHorizontal))
 		{
-			Globals.Score += ScorePoints;
+			Globals.Score += (int)Math.Round(ScorePoints * Globals.Difficulty);
 			Free();
 			return;
 		}
 
 		var newPosition = IsHorizontal
-			? new Vector2((float)(position.X - delta * Speed), position.Y)
-			: new Vector2(position.X, (float)(position.Y + delta * Speed));
+			? new Vector2((float)(position.X - delta * Speed * Globals.Difficulty), position.Y)
+			: new Vector2(position.X, (float)(position.Y + delta * Speed * Globals.Difficulty));
 
 		Position = newPosition;
 	}
@@ -68,7 +68,7 @@ public partial class Eoraptor : CharacterBody2D
 	{
 		if (body.HasMethod("player"))
 		{
-			EmitSignal(SignalName.HitPlayer, Damage, Position.X, Position.Y);
+			EmitSignal(SignalName.HitPlayer, Damage * Globals.Difficulty, Position.X, Position.Y);
 		}
 	}
 	

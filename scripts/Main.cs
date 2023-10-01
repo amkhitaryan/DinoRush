@@ -6,8 +6,15 @@ using System.Linq;
 public partial class Main : Node2D
 {
 	private Player Player => GetNode<Player>("/root/Main/Player");
-	// private CharacterBody2D Enemy => GetNode<CharacterBody2D>("/root/Main/Enemy");
-	
+	private Timer Lvl2DifficultyTimer => GetNode<Timer>("Lvl2DifficultyTimer");
+	private Timer Lvl3DifficultyTimer => GetNode<Timer>("Lvl3DifficultyTimer");
+	private Timer Lvl4DifficultyTimer => GetNode<Timer>("Lvl4DifficultyTimer");
+	private Timer Lvl5DifficultyTimer => GetNode<Timer>("Lvl5DifficultyTimer");
+	private Timer Lvl6DifficultyTimer => GetNode<Timer>("Lvl6DifficultyTimer");
+	private Timer EnemySpawnTimer => GetNode<Timer>("EnemySpawnTimer");
+	private Timer EnemySpawnTimerVertical => GetNode<Timer>("EnemySpawnVerticalTimer");
+	private AudioStreamPlayer2D Lvl2Audio => GetNode<AudioStreamPlayer2D>("LvlDifficultyChangeAudio");
+	private AudioStreamPlayer2D Lvl6Audio => GetNode<AudioStreamPlayer2D>("Lvl6DifficultyChangeAudio");
 	private PackedScene _eoraptorScene = GD.Load<PackedScene>("res://scenes/eoraptor.tscn");
 	private PackedScene _eoraptorVScene = GD.Load<PackedScene>("res://scenes/eoraptor_v.tscn");
 	private Random _random;
@@ -46,7 +53,7 @@ public partial class Main : Node2D
 		dinoClass.HitPlayer += (damage, x, y) => Player.OnEoraptorHitPlayer(damage, x, y);
 		dinoClass.IndexOnMap = rnd;
 		dinoClass.IsHorizontal = true;
-		dinoClass.Position = new Vector2(785.0f, 40.0f * Math.Max(rnd, 1));
+		dinoClass.Position = new Vector2(880.0f, 35.0f * Math.Max(rnd, 1));
 		AddChild(dino);
 	}
 
@@ -70,7 +77,51 @@ public partial class Main : Node2D
 		dinoClass.HitPlayer += (damage, x, y) => Player.OnEoraptorHitPlayer(damage, x, y);
 		dinoClass.IndexOnMap = rnd;
 		dinoClass.IsHorizontal = false;
-		dinoClass.Position = new Vector2(40.0f * Math.Max(rnd, 1), -20.0f);
+		dinoClass.Position = new Vector2(rnd == 0 ? 10 : 35.0f * Math.Max(rnd, 1), -20.0f);
 		AddChild(dino);
+	}
+
+	private void OnLvl2DifficultyTimerTimeout()
+	{
+		Lvl2Audio.Play();
+		Globals.Difficulty = 1.5f;
+		EnemySpawnTimer.WaitTime = EnemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
+	}
+	
+	private void OnLvl3DifficultyTimerTimeout()
+	{
+		Lvl2Audio.Play();
+		Globals.Difficulty = 2.0f;
+		EnemySpawnTimer.WaitTime = EnemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
+	}
+	
+	private void OnLvl4DifficultyTimerTimeout()
+	{
+		Lvl2Audio.Play();
+		Globals.Difficulty = 2.5f;
+		EnemySpawnTimer.WaitTime = EnemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
+	}
+	
+	private void OnLvl5DifficultyTimerTimeout()
+	{
+		Lvl2Audio.Play();
+		Globals.Difficulty = 3.0f;
+		EnemySpawnTimer.WaitTime = EnemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
+	}
+	
+	private void OnLvl6DifficultyTimerTimeout()
+	{
+		Lvl6Audio.Play();
+		Globals.Difficulty = 3.5f;
+		EnemySpawnTimer.WaitTime = EnemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
+	}
+
+	private void OnUIGameStarted()
+	{
+		Lvl2DifficultyTimer.Start();
+		Lvl3DifficultyTimer.Start();
+		Lvl4DifficultyTimer.Start();
+		Lvl5DifficultyTimer.Start();
+		Lvl6DifficultyTimer.Start();
 	}
 }
