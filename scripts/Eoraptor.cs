@@ -3,7 +3,7 @@ using System;
 
 public partial class Eoraptor : CharacterBody2D
 {
-	public const float _speed = 45.0f;
+	public const float _speed = 60.0f;
 	public const float _health = 100.0f;
 
 	private AnimatedSprite2D Animation => GetNode<AnimatedSprite2D>("AnimatedSprite2D");

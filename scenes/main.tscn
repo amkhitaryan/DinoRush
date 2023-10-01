@@ -41,4 +41,9 @@ position = Vector2(-51, 257)
 [node name="Player" parent="." instance=ExtResource("2_x6kcb")]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(152, 292)
+position = Vector2(152, 210)
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="OnEnemySpawnTimerTimeout"]
