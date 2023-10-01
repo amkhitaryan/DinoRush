@@ -36,12 +36,12 @@ zoom = Vector2(1.6, 1.6)
 [node name="Eoraptor" parent="." instance=ExtResource("3_8hjlt")]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(-51, 257)
+position = Vector2(366, 193)
 
 [node name="Player" parent="." instance=ExtResource("2_x6kcb")]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(310, 178)
+position = Vector2(302, 184)
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 5.0

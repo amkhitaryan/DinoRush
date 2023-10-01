@@ -4,11 +4,13 @@ using System.Diagnostics;
 
 public partial class Player : CharacterBody2D
 {
+	private const float _gotHitForce = 1.15f;
 	public const float Speed = 100.0f;
 	public float _health = 100.0f;
 	private string _currentDirection = "none";
 	private bool _gotHit = false;
 	private bool _canMove = true;
+	private Vector2 _gotHitVector;
 	
 	private AnimatedSprite2D Animation => GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 	private Camera2D MainCamera => GetNode<Camera2D>("MainCamera");
@@ -43,7 +45,7 @@ public partial class Player : CharacterBody2D
 		if (_gotHit)
 		{
 			_canMove = false;
-			Velocity = Velocity with { X = 0, Y = Speed * 1.15f };
+			Velocity = Velocity with { X = _gotHitVector.X, Y = _gotHitVector.Y };
 			MoveAndSlide();
 		}
 	}
@@ -180,17 +182,15 @@ public partial class Player : CharacterBody2D
 	private void OnEoraptorHitPlayer(float damage,  int posX, int posY)
 	{
 		Debug.WriteLine($"Player got hit for {damage}hp");
-		Debug.WriteLine($"Attacked from [{posX};{posY}]");
+		Debug.WriteLine($"({Position.X};{Position.Y}) from ({posX};{posY})");
 
-		_health -= damage;
+		_gotHitVector = new Vector2(Position.X < posX  ? -100 : 100, Position.Y < posY-20 ? -Speed * _gotHitForce : Speed * _gotHitForce);
+		Debug.WriteLine(_gotHitVector);
 		_gotHit = true;
+		_health -= damage;
 		GotHitTimer.Start();
-
+		
 		// play sound
-		// move player
-		// Velocity = Velocity with { X = 0, Y = Speed * 16 };
-		// MoveAndSlide();
-
 	}
 	
 }

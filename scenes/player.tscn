@@ -250,7 +250,7 @@ animations = [{
 radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7i86"]
-radius = 13.0384
+radius = 15.0
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, -14)

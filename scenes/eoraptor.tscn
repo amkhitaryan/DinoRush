@@ -44,8 +44,8 @@ radius = 5.40806
 height = 22.9843
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w8dwj"]
-radius = 15.1275
-height = 52.5549
+radius = 11.0
+height = 52.0
 
 [node name="Eoraptor" type="CharacterBody2D"]
 script = ExtResource("1_1gnw6")
@@ -65,8 +65,8 @@ shape = SubResource("CapsuleShape2D_um1mt")
 [node name="EoraptorHitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EoraptorHitbox"]
-position = Vector2(-13, -22)
-rotation = 1.67692
+position = Vector2(-9, -19)
+rotation = 1.56955
 shape = SubResource("CapsuleShape2D_w8dwj")
 
 [connection signal="body_entered" from="EoraptorHitbox" to="." method="OnEoraptorHitboxBodyEntered"]
