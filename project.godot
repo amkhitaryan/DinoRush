@@ -17,6 +17,10 @@ boot_splash/bg_color=Color(1, 1, 1, 1)
 boot_splash/image="res://art/dsfan_logo.png"
 config/icon="res://icon.svg"
 
+[aseprite_importers]
+
+aseprite_executable_path="D:/Program Files (x86)/Steam/steamapps/common/Aseprite/Aseprite.exe"
+
 [autoload]
 
 Globals="*res://scripts/Globals.cs"
@@ -28,6 +32,10 @@ window/size/resizable=false
 [dotnet]
 
 project/assembly_name="Jurassic Escape"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/nklbdev.aseprite_importers/plugin.cfg")
 
 [rendering]
 

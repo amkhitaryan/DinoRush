@@ -5,7 +5,7 @@ using System.Diagnostics;
 public partial class Player : CharacterBody2D
 {
 	private const float GotHitForce = 1.15f;
-	private const float Speed = 110.0f;
+	private float _speed = 105.0f;
 	private float _health = 110.0f;
 	private string _currentDirection = "none";
 	private bool _gotHit = false;
@@ -37,7 +37,7 @@ public partial class Player : CharacterBody2D
 		
 		UpdateHealth();
 		GotHit();
-		PlayerMovement();
+		PlayerMovement(delta);
 
 	}
 
@@ -57,7 +57,7 @@ public partial class Player : CharacterBody2D
 		_gotHit = false;
 	}
 
-	private void PlayerMovement()
+	private void PlayerMovement(double delta)
 	{
 		if (!_canMove)
 		{
@@ -68,25 +68,26 @@ public partial class Player : CharacterBody2D
 		{
 			_currentDirection = "right";
 			PlayAnimation(1);
-			Velocity = Velocity with { X = Speed, Y = 0 };
+			Velocity = Velocity with { X = _speed + Globals.Difficulty * 5, Y = 0 };
+			// Velocity = Velocity with { X = _speed, Y = 0 };
 		}
 		else if (Input.IsActionPressed("ui_left"))
 		{
 			_currentDirection = "left";
 			PlayAnimation(1);
-			Velocity = Velocity with { X = -Speed, Y = 0 };
+			Velocity = Velocity with { X = -_speed + Globals.Difficulty * 5, Y = 0 };
 		}
 		else if (Input.IsActionPressed("ui_down"))
 		{
 			_currentDirection = "down";
 			PlayAnimation(1);
-			Velocity = Velocity with { X = 0, Y = Speed };
+			Velocity = Velocity with { X = 0, Y = _speed + Globals.Difficulty * 5 };
 		}
 		else if (Input.IsActionPressed("ui_up"))
 		{
 			_currentDirection = "up";
 			PlayAnimation(1);
-			Velocity = Velocity with { X = 0, Y = -Speed };
+			Velocity = Velocity with { X = 0, Y = -_speed + Globals.Difficulty * 5 };
 		}
 		else
 		{
@@ -181,7 +182,7 @@ public partial class Player : CharacterBody2D
 
 	public void OnEoraptorHitPlayer(float damage,  float posX, float posY)
 	{
-		_gotHitVector = new Vector2(Position.X < posX  ? -100 : 100, Position.Y < posY-20 ? -Speed * GotHitForce : Speed * GotHitForce);
+		_gotHitVector = new Vector2(Position.X < posX  ? -100 : 100, Position.Y < posY-20 ? -_speed * GotHitForce : _speed * GotHitForce);
 		_gotHit = true;
 		_health -= damage;
 		GotHitTimer.Start();

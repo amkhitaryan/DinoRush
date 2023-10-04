@@ -1,0 +1,25 @@
+﻿[remap]
+
+importer="Aseprite AnimatedSprite2D Import"
+type="PackedScene"
+uid="uid://b568mihlx7yps"
+path="res://.godot/imported/triceratops.aseprite-9390da7a3fcaac56452c51a142c7a11b.scn"
+
+[deps]
+
+source_file="res://art/dinos/triceratops.aseprite"
+dest_files=["res://.godot/imported/triceratops.aseprite-9390da7a3fcaac56452c51a142c7a11b.scn"]
+
+[params]
+
+spritesheet/layout=0
+spritesheet/fixed_rows_count=1
+spritesheet/fixed_columns_count=1
+spritesheet/border_type=0
+spritesheet/trim=false
+spritesheet/ignore_empty=false
+spritesheet/merge_duplicates=false
+animation/default/name="default"
+animation/default/direction=0
+animation/default/repeat_count=0
+animation/autoplay=""

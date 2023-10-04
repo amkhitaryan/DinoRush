@@ -16,7 +16,7 @@ public partial class Main : Node2D
 	private AudioStreamPlayer2D Lvl6Audio => GetNode<AudioStreamPlayer2D>("Lvl6DifficultyChangeAudio");
 	private AudioStreamPlayer2D SoundtrackAudio => GetNode<AudioStreamPlayer2D>("Soundtrack");
 	private AudioStreamPlayer2D Soundtrack2Audio => GetNode<AudioStreamPlayer2D>("Soundtrack2");
-	private PackedScene _eoraptorScene = GD.Load<PackedScene>("res://scenes/eoraptor.tscn");
+	private PackedScene _triceratopsScene = GD.Load<PackedScene>("res://scenes/triceratops.tscn");
 	private PackedScene _eoraptorVScene = GD.Load<PackedScene>("res://scenes/eoraptor_v.tscn");
 	private Random _random;
 	
@@ -49,7 +49,7 @@ public partial class Main : Node2D
 		} while (Globals.DinoSpawnMap[rnd]);
 		
 		Globals.DinoSpawnMap[rnd] = true;
-		var dino = (Node2D)_eoraptorScene.Instantiate();
+		var dino = (Node2D)_triceratopsScene.Instantiate();
 
 		var dinoClass = dino as Eoraptor;
 		dinoClass.HitPlayer += (damage, x, y) => Player.OnEoraptorHitPlayer(damage, x, y);
@@ -88,6 +88,7 @@ public partial class Main : Node2D
 		Lvl2Audio.Play();
 		Globals.Difficulty = 1.5f;
 		EnemySpawnTimer.WaitTime = EnemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
+		Soundtrack2Audio.PitchScale += 0.04f;
 	}
 	
 	private void OnLvl3DifficultyTimerTimeout()
@@ -95,6 +96,7 @@ public partial class Main : Node2D
 		Lvl2Audio.Play();
 		Globals.Difficulty = 2.0f;
 		EnemySpawnTimer.WaitTime = EnemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
+		Soundtrack2Audio.PitchScale += 0.04f;
 	}
 	
 	private void OnLvl4DifficultyTimerTimeout()
@@ -102,6 +104,7 @@ public partial class Main : Node2D
 		Lvl2Audio.Play();
 		Globals.Difficulty = 2.5f;
 		EnemySpawnTimer.WaitTime = EnemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
+		Soundtrack2Audio.PitchScale += 0.04f;
 	}
 	
 	private void OnLvl5DifficultyTimerTimeout()
@@ -109,6 +112,7 @@ public partial class Main : Node2D
 		Lvl2Audio.Play();
 		Globals.Difficulty = 3.0f;
 		EnemySpawnTimer.WaitTime = EnemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
+		Soundtrack2Audio.PitchScale += 0.04f;
 	}
 	
 	private void OnLvl6DifficultyTimerTimeout()
@@ -116,6 +120,7 @@ public partial class Main : Node2D
 		Lvl6Audio.Play();
 		Globals.Difficulty = 3.5f;
 		EnemySpawnTimer.WaitTime = EnemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
+		Soundtrack2Audio.PitchScale += 0.04f;
 	}
 
 	private void OnUIGameStarted()

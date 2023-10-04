@@ -1,0 +1,32 @@
+﻿[gd_scene load_steps=5 format=3 uid="uid://b7qdecu7atnwe"]
+
+[ext_resource type="PackedScene" uid="uid://b568mihlx7yps" path="res://art/dinos/triceratops.aseprite" id="1_213f8"]
+[ext_resource type="Script" path="res://scripts/Eoraptor.cs" id="1_gyb8i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_djyk4"]
+radius = 11.0454
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_akylp"]
+radius = 15.0058
+height = 39.9993
+
+[node name="Triceratops" type="CharacterBody2D"]
+script = ExtResource("1_gyb8i")
+
+[node name="AnimatedSprite2D" parent="." instance=ExtResource("1_213f8")]
+position = Vector2(0, -32)
+animation = &"side_walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -16)
+shape = SubResource("CircleShape2D_djyk4")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-17, -26)
+rotation = 1.57689
+shape = SubResource("CapsuleShape2D_akylp")
+
+[connection signal="body_entered" from="Hitbox" to="." method="OnEoraptorHitboxBodyEntered"]
+[connection signal="body_exited" from="Hitbox" to="." method="OnEoraptorHitboxBodyExited"]

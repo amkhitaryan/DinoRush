@@ -25,7 +25,8 @@ public partial class Eoraptor : CharacterBody2D
 			return;
 		}
 
-		Animation.Play("walk");
+		Animation.Play();
+		Animation.SpeedScale += Globals.Difficulty / 5;
 	}
 	
 	public override void _PhysicsProcess(double delta)
