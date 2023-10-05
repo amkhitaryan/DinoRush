@@ -1,4 +1,4 @@
-﻿extends "_importer_base.gd"
+extends "_importer_base.gd"
 
 # Base class for all nested animation import plugins
 

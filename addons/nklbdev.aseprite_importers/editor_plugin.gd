@@ -1,4 +1,4 @@
-﻿@tool
+@tool
 extends EditorPlugin
 
 const PLUGIN_SCRIPTS: Array[GDScript] = [

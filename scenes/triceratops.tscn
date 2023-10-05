@@ -1,32 +1,35 @@
-﻿[gd_scene load_steps=5 format=3 uid="uid://b7qdecu7atnwe"]
+[gd_scene load_steps=5 format=3 uid="uid://o6nhipmjgyj4"]
 
-[ext_resource type="PackedScene" uid="uid://b568mihlx7yps" path="res://art/dinos/triceratops.aseprite" id="1_213f8"]
-[ext_resource type="Script" path="res://scripts/Eoraptor.cs" id="1_gyb8i"]
+[ext_resource type="PackedScene" uid="uid://ykkwp6q8qtqs" path="res://art/dinos/triceratops.aseprite" id="1_gjsua"]
+[ext_resource type="Script" path="res://scripts/Eoraptor.cs" id="1_il804"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_djyk4"]
-radius = 11.0454
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jl70f"]
+radius = 7.99992
+height = 33.9996
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_akylp"]
-radius = 15.0058
-height = 39.9993
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rcqwo"]
+radius = 14.024
+height = 31.9945
 
 [node name="Triceratops" type="CharacterBody2D"]
-script = ExtResource("1_gyb8i")
+script = ExtResource("1_il804")
 
-[node name="AnimatedSprite2D" parent="." instance=ExtResource("1_213f8")]
-position = Vector2(0, -32)
+[node name="AnimatedSprite2D" parent="." instance=ExtResource("1_gjsua")]
+position = Vector2(-1, -32)
 animation = &"side_walk"
+frame_progress = 0.538353
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, -16)
-shape = SubResource("CircleShape2D_djyk4")
+position = Vector2(1, -14)
+rotation = -1.56619
+shape = SubResource("CapsuleShape2D_jl70f")
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(-17, -26)
-rotation = 1.57689
-shape = SubResource("CapsuleShape2D_akylp")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-20, -27)
+rotation = -1.58927
+shape = SubResource("CapsuleShape2D_rcqwo")
 
-[connection signal="body_entered" from="Hitbox" to="." method="OnEoraptorHitboxBodyEntered"]
-[connection signal="body_exited" from="Hitbox" to="." method="OnEoraptorHitboxBodyExited"]
+[connection signal="body_entered" from="Area2D" to="." method="OnEoraptorHitboxBodyEntered"]
+[connection signal="body_exited" from="Area2D" to="." method="OnEoraptorHitboxBodyExited"]

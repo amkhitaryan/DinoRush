@@ -1,4 +1,4 @@
-﻿extends Object
+extends Object
 
 const PLUGIN_BUNDLE_NAME: StringName = "aseprite_importers"
 const ASEPRITE_EXECUTABLE_PATH_SETTING_NAME: StringName = PLUGIN_BUNDLE_NAME + "/aseprite_executable_path"

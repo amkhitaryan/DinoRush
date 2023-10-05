@@ -1,4 +1,4 @@
-﻿extends "_animation_importer_base.gd"
+extends "_animation_importer_base.gd"
 
 func _init(parent_plugin: EditorPlugin) -> void:
 	super(parent_plugin)

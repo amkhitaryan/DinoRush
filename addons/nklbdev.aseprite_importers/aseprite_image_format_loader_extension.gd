@@ -1,4 +1,4 @@
-﻿extends ImageFormatLoaderExtension
+extends ImageFormatLoaderExtension
 
 const Common = preload("common.gd")
 

@@ -1,4 +1,4 @@
-﻿extends "_animation_importer_base.gd"
+extends "_animation_importer_base.gd"
 
 
 const OPTION_PACKED_SPRITESHEET_ANIMATION_STRATEGY: String = "animation/strategy_(packed_spritesheet)"
