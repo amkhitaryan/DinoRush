@@ -12,6 +12,8 @@ radius = 14.024
 height = 31.9945
 
 [node name="Triceratops" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
 script = ExtResource("1_il804")
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("1_gjsua")]

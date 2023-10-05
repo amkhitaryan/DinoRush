@@ -1,10 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://kefpnlxqef0b"]
+[gd_scene load_steps=10 format=3 uid="uid://kefpnlxqef0b"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_c4fh7"]
 [ext_resource type="Texture2D" uid="uid://c1wrix7q5b0q1" path="res://art/tilemap/terrain.png" id="1_fo3xo"]
 [ext_resource type="PackedScene" uid="uid://cowqy1gy8evll" path="res://scenes/player.tscn" id="2_x6kcb"]
-[ext_resource type="PackedScene" uid="uid://cprkqskk7btyv" path="res://scenes/eoraptor.tscn" id="3_8hjlt"]
-[ext_resource type="PackedScene" uid="uid://c54kbjxovi7ax" path="res://scenes/eoraptor_v.tscn" id="5_tbd8j"]
 [ext_resource type="PackedScene" uid="uid://d3fwi1hjkgha1" path="res://scenes/ui.tscn" id="6_tn6m1"]
 [ext_resource type="AudioStream" uid="uid://lx4ctsyjxrsv" path="res://audio/pwup2.wav" id="7_o55dl"]
 [ext_resource type="AudioStream" uid="uid://br2qobvi7vas6" path="res://audio/beat1.mp3" id="8_8vbuu"]
@@ -43,13 +41,6 @@ zoom = Vector2(1.45, 1.45)
 z_index = 1
 y_sort_enabled = true
 position = Vector2(302, 184)
-
-[node name="Eoraptor" parent="." instance=ExtResource("3_8hjlt")]
-visible = false
-position = Vector2(564, 192)
-
-[node name="EoraptorV" parent="." instance=ExtResource("5_tbd8j")]
-visible = false
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 1.2
