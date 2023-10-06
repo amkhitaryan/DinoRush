@@ -5,6 +5,9 @@ using System.Linq;
 
 public partial class Main : Node2D
 {
+	[Signal]
+	public delegate void DifficultyUpEventHandler();
+
 	private Player Player => GetNode<Player>("/root/Main/Player");
 	private Timer Lvl2DifficultyTimer => GetNode<Timer>("Lvl2DifficultyTimer");
 	private Timer Lvl3DifficultyTimer => GetNode<Timer>("Lvl3DifficultyTimer");
@@ -89,6 +92,7 @@ public partial class Main : Node2D
 		Globals.Difficulty = 1.5f;
 		EnemySpawnTimer.WaitTime = EnemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
 		Soundtrack2Audio.PitchScale += 0.04f;
+		EmitSignal(SignalName.DifficultyUp);
 	}
 	
 	private void OnLvl3DifficultyTimerTimeout()
@@ -97,6 +101,7 @@ public partial class Main : Node2D
 		Globals.Difficulty = 2.0f;
 		EnemySpawnTimer.WaitTime = EnemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
 		Soundtrack2Audio.PitchScale += 0.04f;
+		EmitSignal(SignalName.DifficultyUp);
 	}
 	
 	private void OnLvl4DifficultyTimerTimeout()
@@ -105,6 +110,7 @@ public partial class Main : Node2D
 		Globals.Difficulty = 2.5f;
 		EnemySpawnTimer.WaitTime = EnemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
 		Soundtrack2Audio.PitchScale += 0.04f;
+		EmitSignal(SignalName.DifficultyUp);
 	}
 	
 	private void OnLvl5DifficultyTimerTimeout()
@@ -113,6 +119,7 @@ public partial class Main : Node2D
 		Globals.Difficulty = 3.0f;
 		EnemySpawnTimer.WaitTime = EnemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
 		Soundtrack2Audio.PitchScale += 0.04f;
+		EmitSignal(SignalName.DifficultyUp);
 	}
 	
 	private void OnLvl6DifficultyTimerTimeout()
@@ -121,6 +128,7 @@ public partial class Main : Node2D
 		Globals.Difficulty = 3.5f;
 		EnemySpawnTimer.WaitTime = EnemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
 		Soundtrack2Audio.PitchScale += 0.04f;
+		EmitSignal(SignalName.DifficultyUp);
 	}
 
 	private void OnUIGameStarted()

@@ -1,13 +1,11 @@
 using Godot;
-using System;
-using System.Diagnostics;
 
 public partial class Player : CharacterBody2D
 {
 	private const float GotHitForce = 1.15f;
-	private float _speed = 105.0f;
+	private float _speed = 75.0f;
 	private float _health = 110.0f;
-	private string _currentDirection = "none";
+	private Vector2 _currentDirection = Vector2.Zero;
 	private bool _gotHit = false;
 	private bool _canMove = true;
 	private Vector2 _gotHitVector;
@@ -64,97 +62,57 @@ public partial class Player : CharacterBody2D
 			return;
 		}
 		
+		var direction = new Vector2();
 		if (Input.IsActionPressed("ui_right"))
+			direction.X += 1;
+		if (Input.IsActionPressed("ui_left"))
+			direction.X -= 1;
+		if (Input.IsActionPressed("ui_down"))
+			direction.Y += 1;
+		if (Input.IsActionPressed("ui_up"))
+			direction.Y -= 1;
+		
+		if (direction == Vector2.Zero)
 		{
-			_currentDirection = "right";
-			PlayAnimation(1);
-			Velocity = Velocity with { X = _speed + Globals.Difficulty * 5, Y = 0 };
-			// Velocity = Velocity with { X = _speed, Y = 0 };
-		}
-		else if (Input.IsActionPressed("ui_left"))
-		{
-			_currentDirection = "left";
-			PlayAnimation(1);
-			Velocity = Velocity with { X = -_speed + Globals.Difficulty * 5, Y = 0 };
-		}
-		else if (Input.IsActionPressed("ui_down"))
-		{
-			_currentDirection = "down";
-			PlayAnimation(1);
-			Velocity = Velocity with { X = 0, Y = _speed + Globals.Difficulty * 5 };
-		}
-		else if (Input.IsActionPressed("ui_up"))
-		{
-			_currentDirection = "up";
-			PlayAnimation(1);
-			Velocity = Velocity with { X = 0, Y = -_speed + Globals.Difficulty * 5 };
+			PlayAnimation(false);
 		}
 		else
 		{
-			// _currentDirection = "none";
-			PlayAnimation(0);
-			Velocity = Velocity with { X = 0, Y = 0 };
+			_currentDirection = direction;
+			direction = direction.Normalized();
+			direction = direction * _speed * (float)delta;
+			PlayAnimation(true);
+
+			MoveAndCollide(direction * _speed * (float)delta);
 		}
-		
-		MoveAndSlide();
 	}
 	
-	private void PlayAnimation(int movement)
+	private void PlayAnimation(bool isMoving)
 	{
-		switch (_currentDirection)
+		if (_currentDirection == Vector2.Zero)
 		{
-			case "right":
-				Animation.FlipH = false;
-				if (movement == 1)
-				{
-					Animation.Play("side_walk");
-				}
-				else if (movement == 0)
-				{
-					Animation.Play("side_idle");
-				}
-
-				break;
-			case "left":
-				Animation.FlipH = true;
-				if (movement == 1)
-				{
-					Animation.Play("side_walk");
-				}
-				else if (movement == 0)
-				{
-					Animation.Play("side_idle");
-				}
-
-				break;
-			case "down":
-				Animation.FlipH = true;
-				if (movement == 1)
-				{
-					Animation.Play("front_walk");
-				}
-				else if (movement == 0)
-				{
-					Animation.Play("front_idle");
-				}
-
-				break;
-			case "up":
-				Animation.FlipH = true;
-				if (movement == 1)
-				{
-					Animation.Play("back_walk");
-				}
-				else if (movement == 0)
-				{
-					Animation.Play("back_idle");
-				}
-
-				break;
-			default:
-				Animation.Play("front_idle");
-				break;
+			Animation.Play("front_idle");
+			return;
 		}
+
+		if (Mathf.Abs(_currentDirection.X) > Mathf.Abs(_currentDirection.Y))
+		{
+			Animation.FlipH = (_currentDirection.X < 0);
+			Animation.Play(isMoving ? "side_walk" : "side_idle");
+		}
+		else
+		{
+			Animation.FlipH = false;
+			if (_currentDirection.Y > 0)
+			{
+				Animation.Play(isMoving ? "front_walk" : "front_idle");
+			}
+			else
+			{
+				Animation.Play(isMoving ? "back_walk" : "back_idle");
+			}
+		}
+		
 	}
 	
 	private void UpdateHealth()
@@ -182,7 +140,10 @@ public partial class Player : CharacterBody2D
 
 	public void OnEoraptorHitPlayer(float damage,  float posX, float posY)
 	{
-		_gotHitVector = new Vector2(Position.X < posX  ? -100 : 100, Position.Y < posY-20 ? -_speed * GotHitForce : _speed * GotHitForce);
+		_gotHitVector = new Vector2(Position.X < posX ? -100 - Globals.Difficulty * 3 : 100 + Globals.Difficulty * 3,
+			Position.Y < posY - 20
+				? -_speed * GotHitForce - Globals.Difficulty * 3
+				: _speed * GotHitForce + Globals.Difficulty * 3);
 		_gotHit = true;
 		_health -= damage;
 		GotHitTimer.Start();
@@ -194,6 +155,11 @@ public partial class Player : CharacterBody2D
 			Globals.IsGameOver = true;
 			Animation.Stop();
 		}
+	}
+
+	private void OnDifficultyUp()
+	{
+		Animation.SpeedScale += Globals.Difficulty / 5;
 	}
 	
 }

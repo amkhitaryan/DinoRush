@@ -8,8 +8,8 @@ radius = 7.99992
 height = 33.9996
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rcqwo"]
-radius = 14.024
-height = 31.9945
+radius = 15.9973
+height = 35.9939
 
 [node name="Triceratops" type="CharacterBody2D"]
 z_index = 1
@@ -29,7 +29,7 @@ shape = SubResource("CapsuleShape2D_jl70f")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-20, -27)
+position = Vector2(-18, -23)
 rotation = -1.58927
 shape = SubResource("CapsuleShape2D_rcqwo")
 

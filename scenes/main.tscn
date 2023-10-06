@@ -94,6 +94,7 @@ autoplay = true
 [node name="Soundtrack2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_x0qgi")
 
+[connection signal="DifficultyUp" from="." to="Player" method="OnDifficultyUp"]
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="OnEnemySpawnTimerTimeout"]
 [connection signal="timeout" from="EnemySpawnVerticalTimer" to="." method="OnEnemySpawnVerticalTimerTimeout"]
 [connection signal="GameRestarted" from="UI" to="." method="OnUIGameRestarted"]
