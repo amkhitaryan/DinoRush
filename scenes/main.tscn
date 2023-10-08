@@ -58,40 +58,18 @@ autostart = true
 position = Vector2(8, 0)
 polygon = PackedVector2Array(-6, 0, 17, 0, 788, 0, 788, 448, -8, 448, -8, -1, -6, -1, -6, -3, -11, -2, -11, 5, -15, 465, 792, 451, 792, -9, -4, -3, -5, -1, -7, 0)
 
-[node name="Lvl2DifficultyTimer" type="Timer" parent="."]
+[node name="DifficultyUpTimer" type="Timer" parent="."]
 wait_time = 20.0
-one_shot = true
 
-[node name="Lvl3DifficultyTimer" type="Timer" parent="."]
-wait_time = 40.0
-one_shot = true
-
-[node name="Lvl4DifficultyTimer" type="Timer" parent="."]
-wait_time = 60.0
-one_shot = true
-
-[node name="Lvl5DifficultyTimer" type="Timer" parent="."]
-wait_time = 80.0
-one_shot = true
-
-[node name="Lvl6DifficultyTimer" type="Timer" parent="."]
-wait_time = 100.0
-one_shot = true
-
-[node name="LvlDifficultyChangeAudio" type="AudioStreamPlayer2D" parent="."]
+[node name="DifficultyUpAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_o55dl")
 volume_db = -3.748
 
-[node name="Lvl6DifficultyChangeAudio" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(0, -2)
-stream = ExtResource("7_o55dl")
-volume_db = -3.748
-
-[node name="Soundtrack" type="AudioStreamPlayer2D" parent="."]
+[node name="MenuAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_8vbuu")
 autoplay = true
 
-[node name="Soundtrack2" type="AudioStreamPlayer2D" parent="."]
+[node name="Soundtrack" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_x0qgi")
 
 [connection signal="DifficultyUp" from="." to="Player" method="OnDifficultyUp"]
@@ -99,8 +77,4 @@ stream = ExtResource("8_x0qgi")
 [connection signal="timeout" from="EnemySpawnVerticalTimer" to="." method="OnEnemySpawnVerticalTimerTimeout"]
 [connection signal="GameRestarted" from="UI" to="." method="OnUIGameRestarted"]
 [connection signal="GameStarted" from="UI" to="." method="OnUIGameStarted"]
-[connection signal="timeout" from="Lvl2DifficultyTimer" to="." method="OnLvl2DifficultyTimerTimeout"]
-[connection signal="timeout" from="Lvl3DifficultyTimer" to="." method="OnLvl3DifficultyTimerTimeout"]
-[connection signal="timeout" from="Lvl4DifficultyTimer" to="." method="OnLvl4DifficultyTimerTimeout"]
-[connection signal="timeout" from="Lvl5DifficultyTimer" to="." method="OnLvl5DifficultyTimerTimeout"]
-[connection signal="timeout" from="Lvl6DifficultyTimer" to="." method="OnLvl6DifficultyTimerTimeout"]
+[connection signal="timeout" from="DifficultyUpTimer" to="." method="OnDifficultyUpTimerTimeout"]

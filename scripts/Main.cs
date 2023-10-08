@@ -9,16 +9,11 @@ public partial class Main : Node2D
 	public delegate void DifficultyUpEventHandler();
 
 	private Player Player => GetNode<Player>("/root/Main/Player");
-	private Timer Lvl2DifficultyTimer => GetNode<Timer>("Lvl2DifficultyTimer");
-	private Timer Lvl3DifficultyTimer => GetNode<Timer>("Lvl3DifficultyTimer");
-	private Timer Lvl4DifficultyTimer => GetNode<Timer>("Lvl4DifficultyTimer");
-	private Timer Lvl5DifficultyTimer => GetNode<Timer>("Lvl5DifficultyTimer");
-	private Timer Lvl6DifficultyTimer => GetNode<Timer>("Lvl6DifficultyTimer");
+	private Timer DifficultyUpTimer => GetNode<Timer>("DifficultyUpTimer");
 	private Timer EnemySpawnTimer => GetNode<Timer>("EnemySpawnTimer");
-	private AudioStreamPlayer2D Lvl2Audio => GetNode<AudioStreamPlayer2D>("LvlDifficultyChangeAudio");
-	private AudioStreamPlayer2D Lvl6Audio => GetNode<AudioStreamPlayer2D>("Lvl6DifficultyChangeAudio");
+	private AudioStreamPlayer2D DifficultyUpAudio => GetNode<AudioStreamPlayer2D>("DifficultyUpAudio");
+	private AudioStreamPlayer2D MenuAudio => GetNode<AudioStreamPlayer2D>("MenuAudio");
 	private AudioStreamPlayer2D SoundtrackAudio => GetNode<AudioStreamPlayer2D>("Soundtrack");
-	private AudioStreamPlayer2D Soundtrack2Audio => GetNode<AudioStreamPlayer2D>("Soundtrack2");
 	private PackedScene _triceratopsScene = GD.Load<PackedScene>("res://scenes/triceratops.tscn");
 	private PackedScene _eoraptorVScene = GD.Load<PackedScene>("res://scenes/eoraptor_v.tscn");
 	private Random _random;
@@ -34,7 +29,7 @@ public partial class Main : Node2D
 		{
 			var node = GetNode("UI") as UI;
 			node.OnGameOver();
-			Soundtrack2Audio.Stop();
+			SoundtrackAudio.Stop();
 		}
 	}
 
@@ -86,68 +81,29 @@ public partial class Main : Node2D
 		AddChild(dino);
 	}
 
-	private void OnLvl2DifficultyTimerTimeout()
+	private void OnDifficultyUpTimerTimeout()
 	{
-		Lvl2Audio.Play();
-		Globals.Difficulty = 1.5f;
+		if (Globals.IsGameOver || Globals.Difficulty >= 4)
+		{
+			return;
+		}
+		
+		DifficultyUpAudio.Play();
+		Globals.Difficulty += 0.5f;
 		EnemySpawnTimer.WaitTime = EnemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
-		Soundtrack2Audio.PitchScale += 0.04f;
-		EmitSignal(SignalName.DifficultyUp);
-	}
-	
-	private void OnLvl3DifficultyTimerTimeout()
-	{
-		Lvl2Audio.Play();
-		Globals.Difficulty = 2.0f;
-		EnemySpawnTimer.WaitTime = EnemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
-		Soundtrack2Audio.PitchScale += 0.04f;
-		EmitSignal(SignalName.DifficultyUp);
-	}
-	
-	private void OnLvl4DifficultyTimerTimeout()
-	{
-		Lvl2Audio.Play();
-		Globals.Difficulty = 2.5f;
-		EnemySpawnTimer.WaitTime = EnemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
-		Soundtrack2Audio.PitchScale += 0.04f;
-		EmitSignal(SignalName.DifficultyUp);
-	}
-	
-	private void OnLvl5DifficultyTimerTimeout()
-	{
-		Lvl2Audio.Play();
-		Globals.Difficulty = 3.0f;
-		EnemySpawnTimer.WaitTime = EnemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
-		Soundtrack2Audio.PitchScale += 0.04f;
-		EmitSignal(SignalName.DifficultyUp);
-	}
-	
-	private void OnLvl6DifficultyTimerTimeout()
-	{
-		Lvl6Audio.Play();
-		Globals.Difficulty = 3.5f;
-		EnemySpawnTimer.WaitTime = EnemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
-		Soundtrack2Audio.PitchScale += 0.04f;
+		SoundtrackAudio.PitchScale += 0.04f;
 		EmitSignal(SignalName.DifficultyUp);
 	}
 
 	private void OnUIGameStarted()
 	{
-		SoundtrackAudio.Stop();
-		Soundtrack2Audio.Play();
-		Lvl2DifficultyTimer.Start();
-		Lvl3DifficultyTimer.Start();
-		Lvl4DifficultyTimer.Start();
-		Lvl5DifficultyTimer.Start();
-		Lvl6DifficultyTimer.Start();
+		MenuAudio.Stop();
+		SoundtrackAudio.Play();
+		DifficultyUpTimer.Start();
 	}
 
 	private void OnUIGameRestarted()
 	{
-		Lvl2DifficultyTimer.Stop();
-		Lvl3DifficultyTimer.Stop();
-		Lvl4DifficultyTimer.Stop();
-		Lvl5DifficultyTimer.Stop();
-		Lvl6DifficultyTimer.Stop();
+		DifficultyUpTimer.Stop();
 	}
 }

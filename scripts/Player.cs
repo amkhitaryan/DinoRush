@@ -144,6 +144,7 @@ public partial class Player : CharacterBody2D
 			Position.Y < posY - 20
 				? -_speed * GotHitForce - Globals.Difficulty * 3
 				: _speed * GotHitForce + Globals.Difficulty * 3);
+
 		_gotHit = true;
 		_health -= damage;
 		GotHitTimer.Start();
