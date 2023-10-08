@@ -23,7 +23,7 @@ public partial class Player : CharacterBody2D
 			return;
 		}
 
-		Animation.Play("front_idle");
+		Animation.Play("Idle");
 	}
 	
 	public override void _PhysicsProcess(double delta)
@@ -45,6 +45,7 @@ public partial class Player : CharacterBody2D
 		{
 			_canMove = false;
 			Velocity = Velocity with { X = _gotHitVector.X, Y = _gotHitVector.Y };
+			PlayAnimation(false);
 			MoveAndSlide();
 		}
 	}
@@ -91,28 +92,27 @@ public partial class Player : CharacterBody2D
 	{
 		if (_currentDirection == Vector2.Zero)
 		{
-			Animation.Play("front_idle");
+			Animation.Play(_gotHit ? "FrontHit" : "Idle");
 			return;
 		}
 
 		if (Mathf.Abs(_currentDirection.X) > Mathf.Abs(_currentDirection.Y))
 		{
-			Animation.FlipH = (_currentDirection.X < 0);
-			Animation.Play(isMoving ? "side_walk" : "side_idle");
+			Animation.FlipH = _currentDirection.X < 0;
+			Animation.Play(isMoving ? "SideWalk" : _gotHit ? "SideHit" : "SideIdle");
 		}
 		else
 		{
 			Animation.FlipH = false;
 			if (_currentDirection.Y > 0)
 			{
-				Animation.Play(isMoving ? "front_walk" : "front_idle");
+				Animation.Play(isMoving ? "FrontWalk" : _gotHit ? "FrontHit" : "Idle");
 			}
 			else
 			{
-				Animation.Play(isMoving ? "back_walk" : "back_idle");
+				Animation.Play(isMoving ? "BackWalk" : _gotHit ? "BackHit" :"BackIdle");
 			}
 		}
-		
 	}
 	
 	private void UpdateHealth()
