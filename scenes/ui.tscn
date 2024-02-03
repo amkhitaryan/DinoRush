@@ -68,8 +68,7 @@ offset_top = 211.0
 offset_right = 724.0
 offset_bottom = 263.0
 scale = Vector2(1.2, 1.2)
-text = "Made by dsfan in 48 hours
-for Ludum Dare 54"
+text = "Made by AM Games."
 horizontal_alignment = 1
 vertical_alignment = 1
 
