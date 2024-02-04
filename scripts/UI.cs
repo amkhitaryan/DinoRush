@@ -11,10 +11,10 @@ public partial class UI : CanvasLayer
 	[Signal]
 	public delegate void GameRestartedEventHandler();
 	
-	private Node2D BeforeGameScreen => GetNode<Node2D>("BeforeGameScreen");
-	private Node2D DuringGameScreen => GetNode<Node2D>("DuringGameScreen");
-	private Node2D EndOfGameScreen => GetNode<Node2D>("EndOfGameScreen");
-	private Label ScoreLabel => GetNode<Label>("DuringGameScreen/ScoreLabel");
+	private Node2D BeforeGameScreen => GetNode<Node2D>("Control/BeforeGameScreen");
+	private Node2D DuringGameScreen => GetNode<Node2D>("Control/DuringGameScreen");
+	private Node2D EndOfGameScreen => GetNode<Node2D>("Control/EndOfGameScreen");
+	private Label ScoreLabel => GetNode<Label>("Control/DuringGameScreen/ScoreLabel");
 	
 	public override void _Ready()
 	{

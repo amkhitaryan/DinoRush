@@ -7,94 +7,36 @@
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_3selm")
 
-[node name="EndOfGameScreen" type="Node2D" parent="."]
-visible = false
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 0.998
+anchor_bottom = 0.997
+offset_right = 0.279968
+offset_bottom = 0.0799866
 
-[node name="RestartButton" type="Button" parent="EndOfGameScreen"]
-self_modulate = Color(1, 1, 1, 0)
-offset_left = 285.0
-offset_top = 154.0
-offset_right = 377.0
-offset_bottom = 246.0
+[node name="DuringGameScreen" type="Node2D" parent="Control"]
 
-[node name="Sprite2D" type="Sprite2D" parent="EndOfGameScreen/RestartButton"]
-position = Vector2(46, 46)
-scale = Vector2(5.75, 5.75)
-texture = ExtResource("1_jqrxb")
-
-[node name="Label" type="Label" parent="EndOfGameScreen/RestartButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -25.0
-offset_top = -12.0
-offset_right = 32.0
-offset_bottom = 14.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.9, 0.9)
-text = "Restart"
-
-[node name="QuitButton" type="Button" parent="EndOfGameScreen"]
-offset_left = 286.0
-offset_top = 257.0
-offset_right = 377.0
-offset_bottom = 348.0
-
-[node name="Sprite2D" type="Sprite2D" parent="EndOfGameScreen/QuitButton"]
-position = Vector2(45.5, 45.5)
-scale = Vector2(5.6875, 5.6875)
-texture = ExtResource("1_jqrxb")
-
-[node name="Label" type="Label" parent="EndOfGameScreen/QuitButton"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -17.5
-offset_top = -12.5
-offset_right = 18.5
-offset_bottom = 13.5
-text = "Quit"
-
-[node name="CreditsLabel" type="Label" parent="EndOfGameScreen"]
-offset_left = 525.0
-offset_top = 211.0
-offset_right = 724.0
-offset_bottom = 263.0
-scale = Vector2(1.2, 1.2)
-text = "Made by AM Games."
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="DuringGameScreen" type="Node2D" parent="."]
-
-[node name="ScoreLabel" type="Label" parent="DuringGameScreen"]
+[node name="ScoreLabel" type="Label" parent="Control/DuringGameScreen"]
 offset_left = 1073.0
 offset_right = 1153.0
 offset_bottom = 55.0
 text = "0"
 
-[node name="BeforeGameScreen" type="Node2D" parent="."]
+[node name="BeforeGameScreen" type="Node2D" parent="Control"]
 
-[node name="PlayButton" type="Button" parent="BeforeGameScreen"]
+[node name="PlayButton" type="Button" parent="Control/BeforeGameScreen"]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 285.0
 offset_top = 154.0
 offset_right = 377.0
 offset_bottom = 246.0
 
-[node name="Sprite2D" type="Sprite2D" parent="BeforeGameScreen/PlayButton"]
+[node name="Sprite2D" type="Sprite2D" parent="Control/BeforeGameScreen/PlayButton"]
 position = Vector2(46, 46)
 scale = Vector2(5.75, 5.75)
 texture = ExtResource("1_jqrxb")
 
-[node name="Label" type="Label" parent="BeforeGameScreen/PlayButton"]
+[node name="Label" type="Label" parent="Control/BeforeGameScreen/PlayButton"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -110,7 +52,7 @@ grow_vertical = 2
 text = "Play
 "
 
-[node name="QuitButton" type="Button" parent="BeforeGameScreen"]
+[node name="QuitButton" type="Button" parent="Control/BeforeGameScreen"]
 self_modulate = Color(1, 1, 1, 0)
 top_level = true
 offset_left = 286.0
@@ -118,12 +60,12 @@ offset_top = 257.0
 offset_right = 377.0
 offset_bottom = 348.0
 
-[node name="Sprite2D" type="Sprite2D" parent="BeforeGameScreen/QuitButton"]
+[node name="Sprite2D" type="Sprite2D" parent="Control/BeforeGameScreen/QuitButton"]
 position = Vector2(45.5, 45.5)
 scale = Vector2(5.6875, 5.6875)
 texture = ExtResource("1_jqrxb")
 
-[node name="Label" type="Label" parent="BeforeGameScreen/QuitButton"]
+[node name="Label" type="Label" parent="Control/BeforeGameScreen/QuitButton"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -139,12 +81,12 @@ grow_vertical = 2
 text = "Quit
 "
 
-[node name="Sprite2D" type="Sprite2D" parent="BeforeGameScreen"]
+[node name="Sprite2D" type="Sprite2D" parent="Control/BeforeGameScreen"]
 position = Vector2(598, 253)
 scale = Vector2(3.3125, 3.3125)
 texture = ExtResource("3_vdkev")
 
-[node name="Label" type="Label" parent="BeforeGameScreen/Sprite2D"]
+[node name="Label" type="Label" parent="Control/BeforeGameScreen/Sprite2D"]
 offset_left = -16.6038
 offset_top = -22.0377
 offset_right = 49.3962
@@ -152,7 +94,72 @@ offset_bottom = 3.96227
 scale = Vector2(0.5, 0.5)
 text = "Controls"
 
-[connection signal="pressed" from="EndOfGameScreen/RestartButton" to="." method="OnRestartButtonPressed"]
-[connection signal="pressed" from="EndOfGameScreen/QuitButton" to="." method="OnQuitButtonPressed"]
-[connection signal="pressed" from="BeforeGameScreen/PlayButton" to="." method="OnPlayButtonPressed"]
-[connection signal="pressed" from="BeforeGameScreen/QuitButton" to="." method="OnQuitButtonPressed"]
+[node name="EndOfGameScreen" type="Node2D" parent="Control"]
+visible = false
+
+[node name="RestartButton" type="Button" parent="Control/EndOfGameScreen"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 285.0
+offset_top = 154.0
+offset_right = 377.0
+offset_bottom = 246.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/EndOfGameScreen/RestartButton"]
+position = Vector2(46, 46)
+scale = Vector2(5.75, 5.75)
+texture = ExtResource("1_jqrxb")
+
+[node name="Label" type="Label" parent="Control/EndOfGameScreen/RestartButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -12.0
+offset_right = 32.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="Control/EndOfGameScreen"]
+offset_left = 286.0
+offset_top = 257.0
+offset_right = 377.0
+offset_bottom = 348.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/EndOfGameScreen/QuitButton"]
+position = Vector2(45.5, 45.5)
+scale = Vector2(5.6875, 5.6875)
+texture = ExtResource("1_jqrxb")
+
+[node name="Label" type="Label" parent="Control/EndOfGameScreen/QuitButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.5
+offset_top = -12.5
+offset_right = 18.5
+offset_bottom = 13.5
+text = "Quit"
+
+[node name="CreditsLabel" type="Label" parent="Control/EndOfGameScreen"]
+offset_left = 525.0
+offset_top = 211.0
+offset_right = 724.0
+offset_bottom = 263.0
+scale = Vector2(1.2, 1.2)
+text = "Made by AM Games."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Control/BeforeGameScreen/PlayButton" to="." method="OnPlayButtonPressed"]
+[connection signal="pressed" from="Control/BeforeGameScreen/QuitButton" to="." method="OnQuitButtonPressed"]
+[connection signal="pressed" from="Control/EndOfGameScreen/RestartButton" to="." method="OnRestartButtonPressed"]
+[connection signal="pressed" from="Control/EndOfGameScreen/QuitButton" to="." method="OnQuitButtonPressed"]
