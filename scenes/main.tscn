@@ -62,12 +62,11 @@ layer_0/tile_data = PackedInt32Array(0, 262145, 5, 1, 262145, 5, 2, 262145, 5, 3
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1, 0)
 anchor_mode = 0
-zoom = Vector2(1.45, 1.45)
 
 [node name="Player" parent="." instance=ExtResource("2_x6kcb")]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(302, 184)
+position = Vector2(352, 86)
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 1.2

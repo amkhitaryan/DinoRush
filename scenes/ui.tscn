@@ -17,8 +17,8 @@ offset_bottom = 0.0799866
 [node name="DuringGameScreen" type="Node2D" parent="Control"]
 
 [node name="ScoreLabel" type="Label" parent="Control/DuringGameScreen"]
-offset_left = 1073.0
-offset_right = 1153.0
+offset_left = 560.0
+offset_right = 640.0
 offset_bottom = 55.0
 text = "0"
 
@@ -26,10 +26,10 @@ text = "0"
 
 [node name="PlayButton" type="Button" parent="Control/BeforeGameScreen"]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = 285.0
-offset_top = 154.0
-offset_right = 377.0
-offset_bottom = 246.0
+offset_left = 181.0
+offset_top = 104.0
+offset_right = 273.0
+offset_bottom = 196.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/BeforeGameScreen/PlayButton"]
 position = Vector2(46, 46)
@@ -55,10 +55,10 @@ text = "Play
 [node name="QuitButton" type="Button" parent="Control/BeforeGameScreen"]
 self_modulate = Color(1, 1, 1, 0)
 top_level = true
-offset_left = 286.0
-offset_top = 257.0
-offset_right = 377.0
-offset_bottom = 348.0
+offset_left = 182.0
+offset_top = 207.0
+offset_right = 273.0
+offset_bottom = 298.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/BeforeGameScreen/QuitButton"]
 position = Vector2(45.5, 45.5)
@@ -82,7 +82,7 @@ text = "Quit
 "
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/BeforeGameScreen"]
-position = Vector2(598, 253)
+position = Vector2(389, 195)
 scale = Vector2(3.3125, 3.3125)
 texture = ExtResource("3_vdkev")
 
@@ -93,6 +93,7 @@ offset_right = 49.3962
 offset_bottom = 3.96227
 scale = Vector2(0.5, 0.5)
 text = "Controls"
+metadata/_edit_use_anchors_ = true
 
 [node name="EndOfGameScreen" type="Node2D" parent="Control"]
 visible = false
@@ -150,10 +151,10 @@ offset_bottom = 13.5
 text = "Quit"
 
 [node name="CreditsLabel" type="Label" parent="Control/EndOfGameScreen"]
-offset_left = 525.0
-offset_top = 211.0
-offset_right = 724.0
-offset_bottom = 263.0
+offset_left = 375.0
+offset_top = 84.0
+offset_right = 574.0
+offset_bottom = 136.0
 scale = Vector2(1.2, 1.2)
 text = "Made by AM Games."
 horizontal_alignment = 1

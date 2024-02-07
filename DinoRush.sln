@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jurassic Escape", "Jurassic Escape.csproj", "{054900AA-36EB-42CE-B419-BCF8A33BDF3C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DinoRush", "DinoRush.csproj", "{054900AA-36EB-42CE-B419-BCF8A33BDF3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
