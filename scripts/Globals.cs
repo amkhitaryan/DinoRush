@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using Godot.Collections;
 
 public partial class Globals : Node
@@ -27,7 +26,7 @@ public partial class Globals : Node
 		{ 12, false },
 		{ 13, false },
 	};
-	
+
 	public static volatile Dictionary<int, bool> DinoSpawnVerticalMap = new()
 	{
 		{ 0, false },

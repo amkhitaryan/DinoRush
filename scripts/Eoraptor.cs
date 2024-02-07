@@ -1,6 +1,6 @@
 using Godot;
 using System;
-using System.Diagnostics;
+using DinoRush.scripts.Enums;
 
 public partial class Eoraptor : CharacterBody2D
 {
@@ -12,6 +12,7 @@ public partial class Eoraptor : CharacterBody2D
 	private bool _freedMapIndex = false;
 	public int IndexOnMap = 0;
 	public bool IsHorizontal = true;
+	public DinoRunDirection RunDirection;
 	
 	[Signal]
 	public delegate void HitPlayerEventHandler(float damage, int posX, int posY);
@@ -38,27 +39,32 @@ public partial class Eoraptor : CharacterBody2D
 		}
 
 		var position = Position;
-		if (IsHorizontal && position.X <= 300 && !_freedMapIndex)
+		if (RunDirection == DinoRunDirection.Left && position.X <= 300 && !_freedMapIndex)
 		{
 			Globals.DinoSpawnMap[IndexOnMap] = false;
 			_freedMapIndex = true;
 		}
-		else if (!IsHorizontal && position.Y >= 300 && !_freedMapIndex)
+		else if (RunDirection == DinoRunDirection.Down && position.Y >= 300 && !_freedMapIndex)
 		{
 			Globals.DinoSpawnVerticalMap[IndexOnMap] = false;
 			_freedMapIndex = true;
 		}
 		
-		if ((position.X <= -43 && IsHorizontal) || (position.Y >= 475 && !IsHorizontal))
+		if ((position.X <= -43 && RunDirection == DinoRunDirection.Left) || (position.Y >= 475 && RunDirection == DinoRunDirection.Down))
 		{
 			Globals.Score += (int)Math.Round(ScorePoints * Globals.Difficulty);
 			Free();
 			return;
 		}
 
-		var newPosition = IsHorizontal
-			? new Vector2((float)(position.X - delta * Speed * Globals.Difficulty), position.Y)
-			: new Vector2(position.X, (float)(position.Y + delta * Speed * Globals.Difficulty));
+		var newPosition = RunDirection switch
+		{
+			DinoRunDirection.Down => new Vector2(position.X, (float)(position.Y + delta * Speed * Globals.Difficulty)),
+			DinoRunDirection.Up => Position,
+			DinoRunDirection.Left => new Vector2((float)(position.X - delta * Speed * Globals.Difficulty), position.Y),
+			DinoRunDirection.Right => Position,
+			_ => Position,
+		};
 
 		Position = newPosition;
 	}
