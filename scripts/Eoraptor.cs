@@ -26,6 +26,16 @@ public partial class Eoraptor : CharacterBody2D
 			return;
 		}
 
+		switch (RunDirection)
+		{
+			case DinoRunDirection.Up:
+				Scale = new Vector2(-1, -1);
+				break;
+			case DinoRunDirection.Right:
+				Scale = new Vector2(-1, 1);
+				break;
+		}
+
 		Animation.Play();
 		Animation.SpeedScale += Globals.Difficulty / 5;
 	}
@@ -39,12 +49,14 @@ public partial class Eoraptor : CharacterBody2D
 		}
 
 		var position = Position;
-		if (RunDirection == DinoRunDirection.Left && position.X <= 300 && !_freedMapIndex)
+		if (!_freedMapIndex && (RunDirection == DinoRunDirection.Left && position.X <= 300) ||
+		    (RunDirection == DinoRunDirection.Right && position.X >= 600 && !_freedMapIndex))
 		{
 			Globals.DinoSpawnMap[IndexOnMap] = false;
 			_freedMapIndex = true;
 		}
-		else if (RunDirection == DinoRunDirection.Down && position.Y >= 300 && !_freedMapIndex)
+		else if (!_freedMapIndex && (RunDirection == DinoRunDirection.Down && position.Y >= 300) ||
+		         RunDirection == DinoRunDirection.Up && position.Y <= 100)
 		{
 			Globals.DinoSpawnVerticalMap[IndexOnMap] = false;
 			_freedMapIndex = true;
@@ -59,10 +71,10 @@ public partial class Eoraptor : CharacterBody2D
 
 		var newPosition = RunDirection switch
 		{
+			DinoRunDirection.Up => new Vector2(position.X, (float)(position.Y - delta * Speed * Globals.Difficulty)),
 			DinoRunDirection.Down => new Vector2(position.X, (float)(position.Y + delta * Speed * Globals.Difficulty)),
-			DinoRunDirection.Up => Position,
 			DinoRunDirection.Left => new Vector2((float)(position.X - delta * Speed * Globals.Difficulty), position.Y),
-			DinoRunDirection.Right => Position,
+			DinoRunDirection.Right => new Vector2((float)(position.X + delta * Speed * Globals.Difficulty), position.Y),
 			_ => Position,
 		};
 
