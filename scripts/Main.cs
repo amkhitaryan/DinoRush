@@ -72,8 +72,8 @@ public partial class Main : Node2D
 	private void SpawnDino(bool isVertical)
 	{
 		if (!Globals.IsGameStarted || Globals.IsGameOver ||
-		    (isVertical && Globals.DinoSpawnVerticalMap.All(x => x.Value)) ||
-		    (!isVertical && Globals.DinoSpawnMap.All(x => x.Value)))
+		    (isVertical && Globals.DinoSpawnVMap.All(x => x.Value)) ||
+		    (!isVertical && Globals.DinoSpawnHMap.All(x => x.Value)))
 		{
 			return;
 		}
@@ -83,17 +83,17 @@ public partial class Main : Node2D
 		{
 			do
 			{
-				rnd = _random.Next(0, Globals.DinoSpawnVerticalMap.Count);
-			} while (Globals.DinoSpawnVerticalMap[rnd]);
-			Globals.DinoSpawnVerticalMap[rnd] = true;
+				rnd = _random.Next(0, Globals.DinoSpawnVMap.Count);
+			} while (Globals.DinoSpawnVMap[rnd]);
+			Globals.DinoSpawnVMap[rnd] = true;
 		}
 		else
 		{
 			do
 			{
-				rnd = _random.Next(0, Globals.DinoSpawnMap.Count);
-			} while (Globals.DinoSpawnMap[rnd]);
-			Globals.DinoSpawnMap[rnd] = true;
+				rnd = _random.Next(0, Globals.DinoSpawnHMap.Count);
+			} while (Globals.DinoSpawnHMap[rnd]);
+			Globals.DinoSpawnHMap[rnd] = true;
 		}
 
 		var dino = isVertical ? (Node2D)_eoraptorVScene.Instantiate() : (Node2D)_triceratopsScene.Instantiate();

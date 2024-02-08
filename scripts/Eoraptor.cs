@@ -49,20 +49,23 @@ public partial class Eoraptor : CharacterBody2D
 		}
 
 		var position = Position;
-		if (!_freedMapIndex && (RunDirection == DinoRunDirection.Left && position.X <= 300) ||
-		    (RunDirection == DinoRunDirection.Right && position.X >= 600 && !_freedMapIndex))
+		if (!_freedMapIndex && ((RunDirection == DinoRunDirection.Left && position.X <= 300) ||
+		                        (RunDirection == DinoRunDirection.Right && position.X >= 600))) 
 		{
-			Globals.DinoSpawnMap[IndexOnMap] = false;
+			Globals.DinoSpawnHMap[IndexOnMap] = false;
 			_freedMapIndex = true;
 		}
-		else if (!_freedMapIndex && (RunDirection == DinoRunDirection.Down && position.Y >= 300) ||
-		         RunDirection == DinoRunDirection.Up && position.Y <= 100)
+		else if (!_freedMapIndex && ((RunDirection == DinoRunDirection.Down && position.Y >= 300) ||
+		                             (RunDirection == DinoRunDirection.Up && position.Y <= 100))) 
 		{
-			Globals.DinoSpawnVerticalMap[IndexOnMap] = false;
+			Globals.DinoSpawnVMap[IndexOnMap] = false;
 			_freedMapIndex = true;
 		}
-		
-		if ((position.X <= -43 && RunDirection == DinoRunDirection.Left) || (position.Y >= 475 && RunDirection == DinoRunDirection.Down))
+
+		if ((position.Y <= -50 && RunDirection == DinoRunDirection.Up) ||
+		    (position.Y >= 475 && RunDirection == DinoRunDirection.Down) ||
+		    (position.X <= -43 && RunDirection == DinoRunDirection.Left) ||
+		    (position.X >= 850 && RunDirection == DinoRunDirection.Right))
 		{
 			Globals.Score += (int)Math.Round(ScorePoints * Globals.Difficulty);
 			Free();

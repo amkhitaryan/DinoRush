@@ -141,7 +141,7 @@ public partial class Player : CharacterBody2D
 	public void OnEoraptorHitPlayer(float damage,  float posX, float posY)
 	{
 		_gotHitVector = new Vector2(Position.X < posX ? -100 - Globals.Difficulty * 3 : 100 + Globals.Difficulty * 3,
-			Position.Y < posY - 20
+			Position.Y < posY - 10
 				? -_speed * GotHitForce - Globals.Difficulty * 3
 				: _speed * GotHitForce + Globals.Difficulty * 3);
 

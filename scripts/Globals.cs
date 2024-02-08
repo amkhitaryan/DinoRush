@@ -9,7 +9,7 @@ public partial class Globals : Node
 
 	public static int Score { get; set; }
 
-	public static volatile Dictionary<int, bool> DinoSpawnMap = new()
+	public static volatile Dictionary<int, bool> DinoSpawnHMap = new()
 	{
 		{ 0, false },
 		{ 1, false },
@@ -27,7 +27,7 @@ public partial class Globals : Node
 		{ 13, false },
 	};
 
-	public static volatile Dictionary<int, bool> DinoSpawnVerticalMap = new()
+	public static volatile Dictionary<int, bool> DinoSpawnVMap = new()
 	{
 		{ 0, false },
 		{ 1, false },

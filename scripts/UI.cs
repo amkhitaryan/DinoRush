@@ -45,13 +45,13 @@ public partial class UI : CanvasLayer
 		Globals.IsGameOver = false;
 		Globals.Score = 0;
 		Globals.Difficulty = 1;
-		foreach (var key in Globals.DinoSpawnVerticalMap.Keys.ToList())
+		foreach (var key in Globals.DinoSpawnVMap.Keys.ToList())
 		{
-			Globals.DinoSpawnVerticalMap[key] = false;
+			Globals.DinoSpawnVMap[key] = false;
 		}
-		foreach (var key in Globals.DinoSpawnMap.Keys.ToList())
+		foreach (var key in Globals.DinoSpawnHMap.Keys.ToList())
 		{
-			Globals.DinoSpawnMap[key] = false;
+			Globals.DinoSpawnHMap[key] = false;
 		}
 	}
 	
