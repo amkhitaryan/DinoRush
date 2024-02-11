@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://cldgwvnuga8bx"]
+
+[ext_resource type="PackedScene" uid="uid://kefpnlxqef0b" path="res://scenes/main.tscn" id="1_hph3w"]
+[ext_resource type="PackedScene" uid="uid://d3fwi1hjkgha1" path="res://scenes/ui.tscn" id="2_rkc77"]
+
+[node name="GameScene" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control"]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer"]
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="Main" parent="Control/SubViewportContainer/SubViewport" instance=ExtResource("1_hph3w")]
+
+[node name="UI" parent="Control" instance=ExtResource("2_rkc77")]

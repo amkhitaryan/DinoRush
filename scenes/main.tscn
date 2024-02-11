@@ -77,6 +77,7 @@ wait_time = 1.15
 autostart = true
 
 [node name="UI" parent="." instance=ExtResource("6_tn6m1")]
+visible = false
 
 [node name="MapBorder" type="StaticBody2D" parent="."]
 
