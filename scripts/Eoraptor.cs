@@ -17,7 +17,8 @@ public partial class Eoraptor : CharacterBody2D
 	[Signal]
 	public delegate void HitPlayerEventHandler(float damage, int posX, int posY);
 
-	private AnimatedSprite2D Animation => GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+	[Export]
+	private AnimatedSprite2D Animation;
 	
 	public override void _Ready()
 	{

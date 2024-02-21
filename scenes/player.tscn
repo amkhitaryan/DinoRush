@@ -10,9 +10,13 @@ radius = 4.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7i86"]
 radius = 15.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Animation", "HealthBar", "GotHitTimer", "GotHitAudio")]
 position = Vector2(0, -14)
 script = ExtResource("1_6s2on")
+Animation = NodePath("AnimatedSprite2D")
+HealthBar = NodePath("HealthBar")
+GotHitTimer = NodePath("GotHitTimer")
+GotHitAudio = NodePath("GotHitAudio")
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("2_26h4d")]
 position = Vector2(0, -1)

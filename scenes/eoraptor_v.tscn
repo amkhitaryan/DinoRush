@@ -46,10 +46,11 @@ radius = 7.4366
 radius = 11.9974
 height = 35.9999
 
-[node name="Eoraptor" type="CharacterBody2D"]
+[node name="Eoraptor" type="CharacterBody2D" node_paths=PackedStringArray("Animation")]
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_nqvaf")
+Animation = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -33)

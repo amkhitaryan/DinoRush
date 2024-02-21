@@ -11,10 +11,11 @@ height = 33.9996
 radius = 15.9973
 height = 35.9939
 
-[node name="Triceratops" type="CharacterBody2D"]
+[node name="Triceratops" type="CharacterBody2D" node_paths=PackedStringArray("Animation")]
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_il804")
+Animation = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("1_gjsua")]
 position = Vector2(-1, -32)

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Dino Rush"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/GameScene.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://art/AMGames_logo.png"

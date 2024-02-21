@@ -9,14 +9,18 @@ public partial class UI : CanvasLayer
 	[Signal]
 	public delegate void GameRestartedEventHandler();
 	
-	private Node2D BeforeGameScreen => GetNode<Node2D>("Control/BeforeGameScreen");
-	private Node2D DuringGameScreen => GetNode<Node2D>("Control/DuringGameScreen");
-	private Node2D EndOfGameScreen => GetNode<Node2D>("Control/EndOfGameScreen");
-	private Label ScoreLabel => GetNode<Label>("Control/DuringGameScreen/ScoreLabel");
+	[Export]
+	private Node2D _beforeGameScreen;
+	[Export]
+	private Node2D _duringGameScreen;
+	[Export]
+	private Node2D _endOfGameScreen;
+	[Export]
+	private Label _scoreLabel;
 	
 	public override void _Ready()
 	{
-		ScoreLabel.Text = "0";
+		_scoreLabel.Text = "0";
 	}
 
 	public override void _Process(double delta)
@@ -26,14 +30,14 @@ public partial class UI : CanvasLayer
 	
 	private void UpdatePoints()
 	{
-		ScoreLabel.Text = Globals.Score.ToString();  
+		_scoreLabel.Text = Globals.Score.ToString();  
 	}
 	
 	public void OnGameOver()
 	{
 		if (Globals.IsGameOver)
 		{
-			EndOfGameScreen.Visible = true;
+			_endOfGameScreen.Visible = true;
 		}
 	}
 
@@ -59,8 +63,8 @@ public partial class UI : CanvasLayer
 	{
 		EmitSignal(SignalName.GameStarted);
 		Globals.IsGameStarted = true;
-		BeforeGameScreen.Visible = false;
-		DuringGameScreen.Visible = true;
+		_beforeGameScreen.Visible = false;
+		_duringGameScreen.Visible = true;
 	}
 	
 	private void OnQuitButtonPressed()

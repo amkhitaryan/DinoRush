@@ -10,11 +10,14 @@ public partial class Player : CharacterBody2D
 	private bool _canMove = true;
 	private Vector2 _gotHitVector;
 	
-	private AnimatedSprite2D Animation => GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-	private Camera2D MainCamera => GetNode<Camera2D>("MainCamera");
-	private ProgressBar HealthBar => GetNode<ProgressBar>("HealthBar");
-	private Timer GotHitTimer => GetNode<Timer>("GotHitTimer");
-	private AudioStreamPlayer2D GotHitAudio => GetNode<AudioStreamPlayer2D>("GotHitAudio");
+	[Export]
+	private AnimatedSprite2D Animation;
+	[Export]
+	private ProgressBar HealthBar;
+	[Export]
+	private Timer GotHitTimer;
+	[Export]
+	private AudioStreamPlayer2D GotHitAudio;
 
 	public override void _Ready()
 	{

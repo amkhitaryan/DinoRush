@@ -4,8 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://t2srna1wvh7a" path="res://art/menu/MenuButton.png" id="1_jqrxb"]
 [ext_resource type="Texture2D" uid="uid://digibabklkbqp" path="res://art/menu/ArrowKeys.png" id="3_vdkev"]
 
-[node name="UI" type="CanvasLayer"]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("_beforeGameScreen", "_duringGameScreen", "_endOfGameScreen", "_scoreLabel")]
 script = ExtResource("1_3selm")
+_beforeGameScreen = NodePath("Control/BeforeGameScreen")
+_duringGameScreen = NodePath("Control/DuringGameScreen")
+_endOfGameScreen = NodePath("Control/EndOfGameScreen")
+_scoreLabel = NodePath("Control/DuringGameScreen/ScoreLabel")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

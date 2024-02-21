@@ -8,14 +8,25 @@ public partial class Main : Node2D
 	[Signal]
 	public delegate void DifficultyUpEventHandler();
 
-	private Player Player => GetNode<Player>("/root/Main/Player");
-	private Timer DifficultyUpTimer => GetNode<Timer>("DifficultyUpTimer");
-	private Timer EnemySpawnTimer => GetNode<Timer>("EnemySpawnTimer");
-	private AudioStreamPlayer2D DifficultyUpAudio => GetNode<AudioStreamPlayer2D>("DifficultyUpAudio");
-	private AudioStreamPlayer2D MenuAudio => GetNode<AudioStreamPlayer2D>("MenuAudio");
-	private AudioStreamPlayer2D SoundtrackAudio => GetNode<AudioStreamPlayer2D>("Soundtrack");
-	private PackedScene _triceratopsScene = GD.Load<PackedScene>("res://scenes/triceratops.tscn");
-	private PackedScene _eoraptorVScene = GD.Load<PackedScene>("res://scenes/eoraptor_v.tscn");
+	[Export]
+	private Player _player;
+	[Export]
+	private Timer _difficultyUpTimer;
+	[Export]
+	private Timer _enemySpawnTimer;
+	[Export]
+	private AudioStreamPlayer2D _difficultyUpAudio;
+	[Export]
+	private AudioStreamPlayer2D _menuAudio;
+	[Export]
+	private AudioStreamPlayer2D _soundtrackAudio;
+	[Export]
+	private PackedScene _triceratopsScene;
+	[Export]
+	private PackedScene _eoraptorVScene;
+	[Export]
+	private UI _ui;
+	
 	private Random _random;
 	
 	public override void _Ready()
@@ -27,9 +38,8 @@ public partial class Main : Node2D
 	{
 		if (Globals.IsGameOver)
 		{
-			var node = GetNode("UI") as UI;
-			node.OnGameOver();
-			SoundtrackAudio.Stop();
+			_ui.OnGameOver();
+			_soundtrackAudio.Stop();
 		}
 	}
 
@@ -50,23 +60,23 @@ public partial class Main : Node2D
 			return;
 		}
 		
-		DifficultyUpAudio.Play();
+		_difficultyUpAudio.Play();
 		Globals.Difficulty += 0.5f;
-		EnemySpawnTimer.WaitTime = EnemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
-		SoundtrackAudio.PitchScale += 0.04f;
+		_enemySpawnTimer.WaitTime = _enemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
+		_soundtrackAudio.PitchScale += 0.04f;
 		EmitSignal(SignalName.DifficultyUp);
 	}
 
 	private void OnUIGameStarted()
 	{
-		MenuAudio.Stop();
-		SoundtrackAudio.Play();
-		DifficultyUpTimer.Start();
+		_menuAudio.Stop();
+		_soundtrackAudio.Play();
+		_difficultyUpTimer.Start();
 	}
 
 	private void OnUIGameRestarted()
 	{
-		DifficultyUpTimer.Stop();
+		_difficultyUpTimer.Stop();
 	}
 	
 	private void SpawnDino(bool isVertical)
@@ -98,7 +108,7 @@ public partial class Main : Node2D
 
 		var dino = isVertical ? (Node2D)_eoraptorVScene.Instantiate() : (Node2D)_triceratopsScene.Instantiate();
 		var dinoClass = (Eoraptor)dino;
-		dinoClass.HitPlayer += (damage, x, y) => Player.OnEoraptorHitPlayer(damage, x, y);
+		dinoClass.HitPlayer += (damage, x, y) => _player.OnEoraptorHitPlayer(damage, x, y);
 		dinoClass.IndexOnMap = rnd;
 		dinoClass.RunDirection = isVertical ? (DinoRunDirection)_random.Next(0, 2) : (DinoRunDirection)_random.Next(2, 4);
 		dinoClass.Position = dinoClass.RunDirection switch
