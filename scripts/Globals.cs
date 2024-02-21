@@ -6,6 +6,11 @@ public partial class Globals : Node
 	public static bool IsGameStarted = false;
 	public static bool IsGameOver = false;
 	public static float Difficulty = 1.0f;
+	public static Vector2I ViewportSize;
+	public static float ZoomFactor = 1.0f;
+
+	public static int ViewportSizeX => (int)(ViewportSize.X / ZoomFactor);
+	public static int ViewportSizeY => (int)(ViewportSize.Y / ZoomFactor);
 
 	public static int Score { get; set; }
 
@@ -56,6 +61,7 @@ public partial class Globals : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		ViewportSize = GetTree().Root.ContentScaleSize;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

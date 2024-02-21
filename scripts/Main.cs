@@ -113,10 +113,10 @@ public partial class Main : Node2D
 		dinoClass.RunDirection = isVertical ? (DinoRunDirection)_random.Next(0, 2) : (DinoRunDirection)_random.Next(2, 4);
 		dinoClass.Position = dinoClass.RunDirection switch
 		{
-			DinoRunDirection.Up => new Vector2(rnd == 0 ? 10 : 35.0f * Math.Max(rnd, 1), 500.0f),
-			DinoRunDirection.Down => new Vector2(rnd == 0 ? 10 : 35.0f * Math.Max(rnd, 1), -20.0f),
-			DinoRunDirection.Left => new Vector2(880.0f, 35.0f * Math.Max(rnd, 1)),
-			DinoRunDirection.Right => new Vector2(-60.0f, 35.0f * Math.Max(rnd, 1)),
+			DinoRunDirection.Up => new Vector2(rnd == 0 ? 10 : 35.0f * Math.Max(rnd, 1), Globals.ViewportSizeY + 35.0f),
+			DinoRunDirection.Down => new Vector2(rnd == 0 ? 10 : 35.0f * Math.Max(rnd, 1), -35.0f),
+			DinoRunDirection.Left => new Vector2(Globals.ViewportSizeX + 35.0f, 35.0f * Math.Max(rnd, 1)),
+			DinoRunDirection.Right => new Vector2(-35.0f, 35.0f * Math.Max(rnd, 1)),
 			_ => Position,
 		};
 			 
