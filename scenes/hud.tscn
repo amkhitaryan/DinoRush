@@ -10,6 +10,7 @@ timeBoard = NodePath("HBoxContainer/TimeBoard")
 scoreBoard = NodePath("HBoxContainer/ScoreBoard")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+modulate = Color(1, 1, 1, 0.745098)
 anchors_preset = -1
 anchor_right = 1.004
 offset_left = 4.0
@@ -19,11 +20,9 @@ offset_bottom = 20.0
 grow_horizontal = 2
 
 [node name="ScoreBoard" parent="HBoxContainer" instance=ExtResource("2_exygn")]
-modulate = Color(1, 1, 1, 0.705882)
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="TimeBoard" parent="HBoxContainer" instance=ExtResource("3_jwnbk")]
-modulate = Color(1, 1, 1, 0.705882)
 layout_mode = 2
 size_flags_horizontal = 3

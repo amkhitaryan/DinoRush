@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c54kbjxovi7ax" path="res://scenes/eoraptor_v.tscn" id="3_crn5t"]
 [ext_resource type="AudioStream" uid="uid://lx4ctsyjxrsv" path="res://audio/pwup2.wav" id="7_o55dl"]
 [ext_resource type="AudioStream" uid="uid://br2qobvi7vas6" path="res://audio/beat1.mp3" id="8_8vbuu"]
-[ext_resource type="Script" path="res://scenes/Camera2D.gd" id="8_w2vkg"]
+[ext_resource type="Script" path="res://scripts/Camera2D.gd" id="8_w2vkg"]
 [ext_resource type="AudioStream" uid="uid://cc5p5x6cqg1oe" path="res://audio/beat2.mp3" id="8_x0qgi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fkqms"]

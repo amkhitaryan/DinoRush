@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/GameScene.cs" id="1_lbdrl"]
 [ext_resource type="PackedScene" uid="uid://d3fwi1hjkgha1" path="res://scenes/ui.tscn" id="2_rkc77"]
 [ext_resource type="PackedScene" uid="uid://dqihwv51bgwdv" path="res://scenes/hud.tscn" id="4_hyel0"]
-[ext_resource type="Script" path="res://scenes/Camera2D.gd" id="4_xl5sp"]
+[ext_resource type="Script" path="res://scripts/Camera2D.gd" id="4_xl5sp"]
 
 [node name="GameScene" type="Node2D" node_paths=PackedStringArray("Hud")]
 script = ExtResource("1_lbdrl")
