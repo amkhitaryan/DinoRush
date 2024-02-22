@@ -12,7 +12,7 @@ public partial class Globals : Node
 	public static int ViewportSizeX => (int)(ViewportSize.X / ZoomFactor);
 	public static int ViewportSizeY => (int)(ViewportSize.Y / ZoomFactor);
 
-	private static int _score = 0;
+	private static volatile int _score = 0;
 	public static int Score
 	{
 		get => _score;
