@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cldgwvnuga8bx"]
+[gd_scene load_steps=6 format=3 uid="uid://cldgwvnuga8bx"]
 
 [ext_resource type="PackedScene" uid="uid://kefpnlxqef0b" path="res://scenes/main.tscn" id="1_hph3w"]
+[ext_resource type="Script" path="res://scenes/GameScene.cs" id="1_lbdrl"]
 [ext_resource type="PackedScene" uid="uid://d3fwi1hjkgha1" path="res://scenes/ui.tscn" id="2_rkc77"]
+[ext_resource type="PackedScene" uid="uid://dqihwv51bgwdv" path="res://scenes/hud.tscn" id="4_hyel0"]
 [ext_resource type="Script" path="res://scenes/Camera2D.gd" id="4_xl5sp"]
 
-[node name="GameScene" type="Node2D"]
+[node name="GameScene" type="Node2D" node_paths=PackedStringArray("Hud")]
+script = ExtResource("1_lbdrl")
+Hud = NodePath("HUD")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -35,6 +39,8 @@ anchor_mode = 0
 script = ExtResource("4_xl5sp")
 
 [node name="UI" parent="." instance=ExtResource("2_rkc77")]
+
+[node name="HUD" parent="." instance=ExtResource("4_hyel0")]
 
 [connection signal="GameRestarted" from="UI" to="Control/SubViewportContainer/SubViewport/Main" method="OnUIGameRestarted"]
 [connection signal="GameStarted" from="UI" to="Control/SubViewportContainer/SubViewport/Main" method="OnUIGameStarted"]

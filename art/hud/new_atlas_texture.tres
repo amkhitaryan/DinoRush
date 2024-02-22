@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://b4eu785o62ln5"]
+
+[ext_resource type="Texture2D" uid="uid://dfms3ldw7ihih" path="res://art/hud/Scoreboard.png" id="1_87wls"]
+
+[resource]
+resource_local_to_scene = true
+atlas = ExtResource("1_87wls")
+region = Rect2(8, 0, 8, 8)

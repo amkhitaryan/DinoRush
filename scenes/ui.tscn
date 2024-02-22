@@ -4,12 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://t2srna1wvh7a" path="res://art/menu/MenuButton.png" id="1_jqrxb"]
 [ext_resource type="Texture2D" uid="uid://digibabklkbqp" path="res://art/menu/ArrowKeys.png" id="3_vdkev"]
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("_beforeGameScreen", "_duringGameScreen", "_endOfGameScreen", "_scoreLabel")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("_beforeGameScreen", "_duringGameScreen", "_endOfGameScreen")]
 script = ExtResource("1_3selm")
 _beforeGameScreen = NodePath("Control/BeforeGameScreen")
 _duringGameScreen = NodePath("Control/DuringGameScreen")
 _endOfGameScreen = NodePath("Control/EndOfGameScreen")
-_scoreLabel = NodePath("Control/DuringGameScreen/ScoreLabel")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -20,20 +19,14 @@ offset_bottom = 0.0799866
 
 [node name="DuringGameScreen" type="Node2D" parent="Control"]
 
-[node name="ScoreLabel" type="Label" parent="Control/DuringGameScreen"]
-offset_left = 560.0
-offset_right = 640.0
-offset_bottom = 55.0
-text = "0"
-
 [node name="BeforeGameScreen" type="Node2D" parent="Control"]
 
 [node name="PlayButton" type="Button" parent="Control/BeforeGameScreen"]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = 181.0
-offset_top = 104.0
-offset_right = 273.0
-offset_bottom = 196.0
+offset_left = 225.0
+offset_top = 141.0
+offset_right = 317.0
+offset_bottom = 233.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/BeforeGameScreen/PlayButton"]
 position = Vector2(46, 46)
@@ -59,10 +52,10 @@ text = "Play
 [node name="QuitButton" type="Button" parent="Control/BeforeGameScreen"]
 self_modulate = Color(1, 1, 1, 0)
 top_level = true
-offset_left = 182.0
-offset_top = 207.0
-offset_right = 273.0
-offset_bottom = 298.0
+offset_left = 226.0
+offset_top = 244.0
+offset_right = 317.0
+offset_bottom = 335.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/BeforeGameScreen/QuitButton"]
 position = Vector2(45.5, 45.5)
@@ -86,7 +79,7 @@ text = "Quit
 "
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/BeforeGameScreen"]
-position = Vector2(389, 195)
+position = Vector2(433, 232)
 scale = Vector2(3.3125, 3.3125)
 texture = ExtResource("3_vdkev")
 
@@ -153,16 +146,6 @@ offset_top = -12.5
 offset_right = 18.5
 offset_bottom = 13.5
 text = "Quit"
-
-[node name="CreditsLabel" type="Label" parent="Control/EndOfGameScreen"]
-offset_left = 375.0
-offset_top = 84.0
-offset_right = 574.0
-offset_bottom = 136.0
-scale = Vector2(1.2, 1.2)
-text = "Made by AM Games."
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [connection signal="pressed" from="Control/BeforeGameScreen/PlayButton" to="." method="OnPlayButtonPressed"]
 [connection signal="pressed" from="Control/BeforeGameScreen/QuitButton" to="." method="OnQuitButtonPressed"]

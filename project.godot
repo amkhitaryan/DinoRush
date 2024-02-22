@@ -37,9 +37,14 @@ window/stretch/scale_mode="integer"
 
 project/assembly_name="DinoRush"
 
-[editor_plugins]
+[file_customization]
 
-enabled=PackedStringArray("res://addons/nklbdev.aseprite_importers/plugin.cfg")
+folder_colors={
+"res://art/": "yellow",
+"res://audio/": "green",
+"res://scenes/": "purple",
+"res://scripts/": "blue"
+}
 
 [filesystem]
 

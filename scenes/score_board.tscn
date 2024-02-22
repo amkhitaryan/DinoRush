@@ -1,0 +1,95 @@
+[gd_scene load_steps=11 format=3 uid="uid://dq30wl50qekwe"]
+
+[ext_resource type="Script" path="res://scripts/ScoreBoard.cs" id="1_cma2i"]
+[ext_resource type="Texture2D" uid="uid://dfms3ldw7ihih" path="res://art/hud/Scoreboard.png" id="2_rrki4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6u4n"]
+atlas = ExtResource("2_rrki4")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfjnd"]
+resource_local_to_scene = true
+atlas = ExtResource("2_rrki4")
+region = Rect2(48, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3rjq"]
+resource_local_to_scene = true
+atlas = ExtResource("2_rrki4")
+region = Rect2(48, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0w1y"]
+resource_local_to_scene = true
+atlas = ExtResource("2_rrki4")
+region = Rect2(48, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufvxl"]
+resource_local_to_scene = true
+atlas = ExtResource("2_rrki4")
+region = Rect2(48, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjdek"]
+resource_local_to_scene = true
+atlas = ExtResource("2_rrki4")
+region = Rect2(48, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dumtw"]
+resource_local_to_scene = true
+atlas = ExtResource("2_rrki4")
+region = Rect2(48, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ioucm"]
+resource_local_to_scene = true
+atlas = ExtResource("2_rrki4")
+region = Rect2(48, 8, 8, 8)
+
+[node name="ScoreBoard" type="HBoxContainer" node_paths=PackedStringArray("number1", "number2", "number3", "number4", "number5", "number6", "number7")]
+offset_right = 76.0
+offset_bottom = 16.0
+script = ExtResource("1_cma2i")
+number1 = NodePath("TextureRect2")
+number2 = NodePath("TextureRect3")
+number3 = NodePath("TextureRect4")
+number4 = NodePath("TextureRect5")
+number5 = NodePath("TextureRect6")
+number6 = NodePath("TextureRect7")
+number7 = NodePath("TextureRect8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = SubResource("AtlasTexture_c6u4n")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = SubResource("AtlasTexture_rfjnd")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = SubResource("AtlasTexture_y3rjq")
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = SubResource("AtlasTexture_j0w1y")
+
+[node name="TextureRect5" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = SubResource("AtlasTexture_ufvxl")
+
+[node name="TextureRect6" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = SubResource("AtlasTexture_pjdek")
+
+[node name="TextureRect7" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = SubResource("AtlasTexture_dumtw")
+
+[node name="TextureRect8" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = SubResource("AtlasTexture_ioucm")

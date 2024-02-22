@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqihwv51bgwdv"]
+
+[ext_resource type="Script" path="res://scripts/Hud.cs" id="1_g3kty"]
+[ext_resource type="PackedScene" uid="uid://dq30wl50qekwe" path="res://scenes/score_board.tscn" id="2_exygn"]
+[ext_resource type="PackedScene" uid="uid://b55hkxqptbn3e" path="res://scenes/time_board.tscn" id="3_jwnbk"]
+
+[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("timeBoard", "scoreBoard")]
+script = ExtResource("1_g3kty")
+timeBoard = NodePath("HBoxContainer/TimeBoard")
+scoreBoard = NodePath("HBoxContainer/ScoreBoard")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = -1
+anchor_right = 1.004
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 0.159912
+offset_bottom = 20.0
+grow_horizontal = 2
+
+[node name="ScoreBoard" parent="HBoxContainer" instance=ExtResource("2_exygn")]
+modulate = Color(1, 1, 1, 0.705882)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TimeBoard" parent="HBoxContainer" instance=ExtResource("3_jwnbk")]
+modulate = Color(1, 1, 1, 0.705882)
+layout_mode = 2
+size_flags_horizontal = 3

@@ -15,22 +15,13 @@ public partial class UI : CanvasLayer
 	private Node2D _duringGameScreen;
 	[Export]
 	private Node2D _endOfGameScreen;
-	[Export]
-	private Label _scoreLabel;
 	
 	public override void _Ready()
 	{
-		_scoreLabel.Text = "0";
 	}
 
 	public override void _Process(double delta)
 	{
-		UpdatePoints();
-	}
-	
-	private void UpdatePoints()
-	{
-		_scoreLabel.Text = Globals.Score.ToString();  
 	}
 	
 	public void OnGameOver()
@@ -48,6 +39,7 @@ public partial class UI : CanvasLayer
 		Globals.IsGameStarted = false;
 		Globals.IsGameOver = false;
 		Globals.Score = 0;
+		Globals.ElapsedSeconds = 0;
 		Globals.Difficulty = 1;
 		foreach (var key in Globals.DinoSpawnVMap.Keys.ToList())
 		{
