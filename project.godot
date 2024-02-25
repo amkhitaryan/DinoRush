@@ -16,6 +16,7 @@ config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://art/AMGames_logo.png"
 config/icon="res://art/ClientIcon32x32.svg"
+boot_splash/minimum_display_time=2500
 
 [aseprite_importers]
 
