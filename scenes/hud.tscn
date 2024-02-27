@@ -1,13 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqihwv51bgwdv"]
+[gd_scene load_steps=8 format=3 uid="uid://dqihwv51bgwdv"]
 
 [ext_resource type="Script" path="res://scripts/Hud.cs" id="1_g3kty"]
 [ext_resource type="PackedScene" uid="uid://dq30wl50qekwe" path="res://scenes/score_board.tscn" id="2_exygn"]
 [ext_resource type="PackedScene" uid="uid://b55hkxqptbn3e" path="res://scenes/time_board.tscn" id="3_jwnbk"]
 
-[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("timeBoard", "scoreBoard")]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sfwb0"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/hearts(16x8).png-3d13352d7cc4a0080c9d6fa39bdfb2bb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7aws"]
+resource_local_to_scene = true
+atlas = SubResource("CompressedTexture2D_sfwb0")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_no2wd"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/hearts(16x8).png-3d13352d7cc4a0080c9d6fa39bdfb2bb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tykaq"]
+resource_local_to_scene = true
+atlas = SubResource("CompressedTexture2D_no2wd")
+region = Rect2(8, 0, 8, 8)
+
+[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("timeBoard", "scoreBoard", "healthBoard", "healthLost")]
 script = ExtResource("1_g3kty")
 timeBoard = NodePath("HBoxContainer/TimeBoard")
 scoreBoard = NodePath("HBoxContainer/ScoreBoard")
+healthBoard = NodePath("HBoxContainer/HealthBoard")
+healthLost = NodePath("TextureRect2")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 modulate = Color(1, 1, 1, 0.745098)
@@ -19,6 +39,15 @@ offset_right = 0.159912
 offset_bottom = 20.0
 grow_horizontal = 2
 
+[node name="HealthBoard" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HealthBoard"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = SubResource("AtlasTexture_h7aws")
+
 [node name="ScoreBoard" parent="HBoxContainer" instance=ExtResource("2_exygn")]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -26,3 +55,12 @@ size_flags_horizontal = 3
 [node name="TimeBoard" parent="HBoxContainer" instance=ExtResource("3_jwnbk")]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+offset_left = 24.0
+offset_top = 4.0
+offset_right = 40.0
+offset_bottom = 20.0
+texture = SubResource("AtlasTexture_tykaq")

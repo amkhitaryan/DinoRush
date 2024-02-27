@@ -41,6 +41,8 @@ public partial class UI : CanvasLayer
 		Globals.Score = 0;
 		Globals.ElapsedSeconds = 0;
 		Globals.Difficulty = 1;
+		Globals.CurrentMaxHealth = Globals.DefaultMaxHealth;
+		Globals.CurrentHealth = Globals.DefaultMaxHealth;
 		foreach (var key in Globals.DinoSpawnVMap.Keys.ToList())
 		{
 			Globals.DinoSpawnVMap[key] = false;

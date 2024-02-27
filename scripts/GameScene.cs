@@ -7,7 +7,9 @@ public partial class GameScene : Node2D
 	
 	public override void _Ready()
 	{
-		CreateTween().TweenCallback(Callable.From(() => {
+		CreateTween().TweenCallback(Callable.From(() =>
+		{
+			Hud.SetHearts(Globals.CurrentHealth, Globals.DefaultMaxHealth);
 			Hud.scoreBoard.SetNumber(Globals.Score);
 			Hud.timeBoard.SetNumber(Globals.ElapsedSeconds);
 		})).SetDelay(0.1f);
@@ -18,6 +20,11 @@ public partial class GameScene : Node2D
 			Hud.scoreBoard.SetNumber(Globals.Score);
 			Hud.timeBoard.SetNumber(Globals.ElapsedSeconds);
 		})).SetDelay(1.0f);
+		
+		CreateTween().SetLoops().TweenCallback(Callable.From(() =>
+		{
+			Hud.SetHearts(Globals.CurrentHealth, Globals.CurrentMaxHealth);
+		})).SetDelay(0.2f);
 	}
 
 	public override void _Process(double delta)

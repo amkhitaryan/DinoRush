@@ -8,6 +8,9 @@ public partial class Globals : Node
 	public static float Difficulty = 1.0f;
 	public static Vector2I ViewportSize;
 	public static float ZoomFactor = 1.0f;
+	public static int CurrentHealth = 6;
+	public static int CurrentMaxHealth = 6;
+	public static int DefaultMaxHealth = 6;
 
 	public static int ViewportSizeX => (int)(ViewportSize.X / ZoomFactor);
 	public static int ViewportSizeY => (int)(ViewportSize.Y / ZoomFactor);

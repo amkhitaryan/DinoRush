@@ -4,7 +4,6 @@ public partial class Player : CharacterBody2D
 {
 	private const float GotHitForce = 1.15f;
 	private float _speed = 75.0f;
-	private float _health = 110.0f;
 	private Vector2 _currentDirection = Vector2.Zero;
 	private bool _gotHit = false;
 	private bool _canMove = true;
@@ -12,8 +11,6 @@ public partial class Player : CharacterBody2D
 	
 	[Export]
 	private AnimatedSprite2D Animation;
-	[Export]
-	private ProgressBar HealthBar;
 	[Export]
 	private Timer GotHitTimer;
 	[Export]
@@ -36,7 +33,7 @@ public partial class Player : CharacterBody2D
 			return;
 		}
 		
-		UpdateHealth();
+		// UpdateHealth();
 		GotHit();
 		PlayerMovement(delta);
 
@@ -118,11 +115,6 @@ public partial class Player : CharacterBody2D
 		}
 	}
 	
-	private void UpdateHealth()
-	{
-		HealthBar.Value = _health;
-	}
-
 	private void OnPlayerHitboxBodyEntered(Node2D body)
 	{
 		if (body.HasMethod("Enemy"))
@@ -149,13 +141,14 @@ public partial class Player : CharacterBody2D
 				: _speed * GotHitForce + Globals.Difficulty * 3);
 
 		_gotHit = true;
-		_health -= damage;
 		GotHitTimer.Start();
 		GotHitAudio.Play();
+		
+		Globals.CurrentHealth -= 1;
 
-		if (_health <= 0)
+		if (Globals.CurrentHealth <= 0)
 		{
-			_health = 0;
+			Globals.CurrentHealth = 0;
 			Globals.IsGameOver = true;
 			Animation.Stop();
 		}

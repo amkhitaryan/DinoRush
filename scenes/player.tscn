@@ -10,11 +10,10 @@ radius = 4.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7i86"]
 radius = 15.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Animation", "HealthBar", "GotHitTimer", "GotHitAudio")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Animation", "GotHitTimer", "GotHitAudio")]
 position = Vector2(0, -14)
 script = ExtResource("1_6s2on")
 Animation = NodePath("AnimatedSprite2D")
-HealthBar = NodePath("HealthBar")
 GotHitTimer = NodePath("GotHitTimer")
 GotHitAudio = NodePath("GotHitAudio")
 
@@ -25,19 +24,6 @@ animation = &"Idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 10)
 shape = SubResource("CircleShape2D_jfhlm")
-
-[node name="HealthBar" type="ProgressBar" parent="."]
-modulate = Color(0, 1, 0.2, 1)
-z_index = -1
-y_sort_enabled = true
-offset_left = -12.0
-offset_top = 16.0
-offset_right = 228.0
-offset_bottom = 56.0
-scale = Vector2(0.1, 0.1)
-value = 100.0
-show_percentage = false
-metadata/_edit_use_anchors_ = true
 
 [node name="PlayerHitbox" type="Area2D" parent="."]
 
