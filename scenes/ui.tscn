@@ -92,6 +92,19 @@ scale = Vector2(0.5, 0.5)
 text = "Controls"
 metadata/_edit_use_anchors_ = true
 
+[node name="Label2" type="Label" parent="Control/BeforeGameScreen"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 520.0
+offset_right = 104.0
+offset_bottom = 546.0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+text = "version 0.1.0"
+metadata/_edit_use_anchors_ = true
+
 [node name="EndOfGameScreen" type="Node2D" parent="Control"]
 visible = false
 
@@ -146,6 +159,19 @@ offset_top = -12.5
 offset_right = 18.5
 offset_bottom = 13.5
 text = "Quit"
+
+[node name="Label2" type="Label" parent="Control/EndOfGameScreen"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 520.0
+offset_right = 104.0
+offset_bottom = 546.0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+text = "version 0.1.0"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Control/BeforeGameScreen/PlayButton" to="." method="OnPlayButtonPressed"]
 [connection signal="pressed" from="Control/BeforeGameScreen/QuitButton" to="." method="OnQuitButtonPressed"]
