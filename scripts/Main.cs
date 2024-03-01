@@ -62,6 +62,7 @@ public partial class Main : Node2D
 		
 		_difficultyUpAudio.Play();
 		Globals.Difficulty += 0.5f;
+		_player.Speed += 2.5f;
 		_enemySpawnTimer.WaitTime = _enemySpawnTimer.WaitTime / Globals.Difficulty * 1.2f;
 		_soundtrackAudio.PitchScale += 0.04f;
 		EmitSignal(SignalName.DifficultyUp);

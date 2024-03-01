@@ -3,7 +3,7 @@ using Godot;
 public partial class Player : CharacterBody2D
 {
 	private const float GotHitForce = 1.15f;
-	private float _speed = 75.0f;
+	public float Speed = 75.0f;
 	private Vector2 _currentDirection = Vector2.Zero;
 	private bool _gotHit = false;
 	private bool _canMove = true;
@@ -80,10 +80,10 @@ public partial class Player : CharacterBody2D
 		{
 			_currentDirection = direction;
 			direction = direction.Normalized();
-			direction = direction * _speed * (float)delta;
+			direction = direction * Speed * (float)delta;
 			PlayAnimation(true);
 
-			MoveAndCollide(direction * _speed * (float)delta);
+			MoveAndCollide(direction * Speed * (float)delta);
 		}
 	}
 	
@@ -136,8 +136,8 @@ public partial class Player : CharacterBody2D
 	{
 		_gotHitVector = new Vector2(Position.X < posX ? -100 - Globals.Difficulty * 3 : 100 + Globals.Difficulty * 3,
 			Position.Y < posY - 10
-				? -_speed * GotHitForce - Globals.Difficulty * 3
-				: _speed * GotHitForce + Globals.Difficulty * 3);
+				? -Speed * GotHitForce - Globals.Difficulty * 3
+				: Speed * GotHitForce + Globals.Difficulty * 3);
 
 		_gotHit = true;
 		GotHitTimer.Start();
