@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cprkqskk7btyv"]
 
-[ext_resource type="Script" path="res://scripts/Eoraptor.cs" id="1_1gnw6"]
+[ext_resource type="Script" path="res://scripts/Dino.cs" id="1_3e5wo"]
 [ext_resource type="Texture2D" uid="uid://kco23i1wyot2" path="res://art/dinos/Eoraptor.png" id="2_ogonk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sbt5x"]
@@ -47,10 +47,11 @@ height = 22.9843
 radius = 11.0
 height = 52.0
 
-[node name="Eoraptor" type="CharacterBody2D"]
+[node name="Eoraptor" type="CharacterBody2D" node_paths=PackedStringArray("Animation")]
 z_index = 1
 y_sort_enabled = true
-script = ExtResource("1_1gnw6")
+script = ExtResource("1_3e5wo")
+Animation = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -33)

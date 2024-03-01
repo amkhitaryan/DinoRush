@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://o6nhipmjgyj4"]
 
+[ext_resource type="Script" path="res://scripts/Dino.cs" id="1_bjomm"]
 [ext_resource type="PackedScene" uid="uid://ykkwp6q8qtqs" path="res://art/dinos/triceratops.aseprite" id="1_gjsua"]
-[ext_resource type="Script" path="res://scripts/Eoraptor.cs" id="1_il804"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jl70f"]
 radius = 7.99992
@@ -16,7 +16,7 @@ z_index = 1
 y_sort_enabled = true
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("1_il804")
+script = ExtResource("1_bjomm")
 Animation = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("1_gjsua")]

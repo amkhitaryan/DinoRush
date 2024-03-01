@@ -17,6 +17,7 @@ public partial class GameScene : Node2D
 		CreateTween().SetLoops().TweenCallback(Callable.From(() =>
 		{
 			Globals.ElapsedSeconds += 1;
+			Globals.Score += 1 * (int)Globals.Difficulty;
 			Hud.scoreBoard.SetNumber(Globals.Score);
 			Hud.timeBoard.SetNumber(Globals.ElapsedSeconds);
 		})).SetDelay(1.0f);

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c54kbjxovi7ax"]
 
-[ext_resource type="Script" path="res://scripts/Eoraptor.cs" id="1_nqvaf"]
+[ext_resource type="Script" path="res://scripts/Dino.cs" id="1_2ofyi"]
 [ext_resource type="Texture2D" uid="uid://d1qlgjc6xx37g" path="res://art/dinos/EoraptorV.png" id="2_sl311"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cd58a"]
@@ -51,7 +51,7 @@ z_index = 1
 y_sort_enabled = true
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("1_nqvaf")
+script = ExtResource("1_2ofyi")
 Animation = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

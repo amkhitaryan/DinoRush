@@ -108,7 +108,7 @@ public partial class Main : Node2D
 		}
 
 		var dino = isVertical ? (Node2D)_eoraptorVScene.Instantiate() : (Node2D)_triceratopsScene.Instantiate();
-		var dinoClass = (Eoraptor)dino;
+		var dinoClass = (Dino)dino;
 		dinoClass.HitPlayer += (damage, x, y) => _player.OnEoraptorHitPlayer(damage, x, y);
 		dinoClass.IndexOnMap = rnd;
 		dinoClass.RunDirection = isVertical ? (DinoRunDirection)_random.Next(0, 2) : (DinoRunDirection)_random.Next(2, 4);

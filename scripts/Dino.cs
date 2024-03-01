@@ -2,7 +2,7 @@ using Godot;
 using System;
 using DinoRush.scripts.Enums;
 
-public partial class Eoraptor : CharacterBody2D
+public partial class Dino : CharacterBody2D
 {
 	private const float Speed = 100.0f;
 	private const float Health = 100.0f;
