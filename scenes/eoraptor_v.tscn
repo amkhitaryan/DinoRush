@@ -49,6 +49,8 @@ height = 35.9999
 [node name="Eoraptor" type="CharacterBody2D" node_paths=PackedStringArray("Animation")]
 z_index = 1
 y_sort_enabled = true
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_nqvaf")
 Animation = NodePath("AnimatedSprite2D")
 
@@ -59,13 +61,14 @@ sprite_frames = SubResource("SpriteFrames_w0ai8")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(1, -30)
 rotation = -3.1651
 scale = Vector2(1.47917, 1.47917)
 shape = SubResource("CircleShape2D_siubs")
 
 [node name="EoraptorHitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EoraptorHitbox"]
 position = Vector2(1, -13)

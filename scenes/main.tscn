@@ -72,6 +72,7 @@ wait_time = 1.15
 autostart = true
 
 [node name="MapBorder" type="StaticBody2D" parent="."]
+collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapBorder"]
 position = Vector2(8, 0)

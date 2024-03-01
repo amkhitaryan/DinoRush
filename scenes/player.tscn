@@ -12,6 +12,8 @@ radius = 15.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Animation", "GotHitTimer", "GotHitAudio")]
 position = Vector2(0, -14)
+collision_layer = 2
+collision_mask = 7
 script = ExtResource("1_6s2on")
 Animation = NodePath("AnimatedSprite2D")
 GotHitTimer = NodePath("GotHitTimer")
@@ -26,8 +28,12 @@ position = Vector2(0, 10)
 shape = SubResource("CircleShape2D_jfhlm")
 
 [node name="PlayerHitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox"]
+light_mask = 2
+visibility_layer = 2
 shape = SubResource("CircleShape2D_o7i86")
 
 [node name="GotHitTimer" type="Timer" parent="."]

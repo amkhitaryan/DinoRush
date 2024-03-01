@@ -73,16 +73,26 @@ public partial class Eoraptor : CharacterBody2D
 			return;
 		}
 
-		var newPosition = RunDirection switch
+		var direction = new Vector2();
+		switch (RunDirection)
 		{
-			DinoRunDirection.Up => new Vector2(position.X, (float)(position.Y - delta * Speed * Globals.Difficulty)),
-			DinoRunDirection.Down => new Vector2(position.X, (float)(position.Y + delta * Speed * Globals.Difficulty)),
-			DinoRunDirection.Left => new Vector2((float)(position.X - delta * Speed * Globals.Difficulty), position.Y),
-			DinoRunDirection.Right => new Vector2((float)(position.X + delta * Speed * Globals.Difficulty), position.Y),
-			_ => Position,
-		};
+			case DinoRunDirection.Up:
+				direction.Y -= 1;
+				break;
+			case DinoRunDirection.Down:
+				direction.Y += 1f;
+				break;
+			case DinoRunDirection.Left:
+				direction.X -= 1f;
+				break;
+			case DinoRunDirection.Right:
+				direction.X += 1f;
+				break;
+		}
 
-		Position = newPosition;
+		direction = direction.Normalized();
+		
+		MoveAndCollide(direction * Speed * Globals.Difficulty * (float)delta);
 	}
 	
 	private void OnEoraptorHitboxBodyEntered(Node2D body)

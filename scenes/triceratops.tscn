@@ -14,6 +14,8 @@ height = 35.9939
 [node name="Triceratops" type="CharacterBody2D" node_paths=PackedStringArray("Animation")]
 z_index = 1
 y_sort_enabled = true
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_il804")
 Animation = NodePath("AnimatedSprite2D")
 
@@ -26,8 +28,11 @@ frame_progress = 0.538353
 position = Vector2(1, -14)
 rotation = -1.56619
 shape = SubResource("CapsuleShape2D_jl70f")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-18, -23)
