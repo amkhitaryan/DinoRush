@@ -102,7 +102,7 @@ offset_right = 104.0
 offset_bottom = 546.0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
-text = "version 0.1.0"
+text = "version 0.1.1"
 metadata/_edit_use_anchors_ = true
 
 [node name="EndOfGameScreen" type="Node2D" parent="Control"]
@@ -170,7 +170,7 @@ offset_right = 104.0
 offset_bottom = 546.0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
-text = "version 0.1.0"
+text = "version 0.1.1"
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Control/BeforeGameScreen/PlayButton" to="." method="OnPlayButtonPressed"]
